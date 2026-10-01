@@ -542,16 +542,16 @@ Según el artículo 43 de la Ley 1098 de 2006, las instituciones educativas tien
       ],
       procedimiento: [
         "Identificar la tipología de la situación o conducta mediante el manual de convivencia escolar vigente.",
-        "El docente de aula que está en ese momento debe hacer el registro por escrito de lo sucedido. Todas las partes implicadas tienen derecho a dar su versión de los hechos de forma libre y por escrito en el formato de reflexión.",
+        "El docente de aula que está en ese momento debe hacer el registro por escrito de lo sucedido. En el acta o registro se consignará el compromiso del estudiante de no reincidir en la falta y las acciones de seguimiento acordadas. Todas las partes implicadas tienen derecho a dar su versión de los hechos de forma libre y por escrito en el formato de reflexión.",
         "Mediar de manera pedagógica con las personas involucradas, reuniendo a las partes para que expongan sus puntos de vista.",
         "Fijar formas de solución de manera imparcial, equitativa y justa, y acciones para la reparación de los daños causados, el restablecimiento de los derechos y la reconciliación.",
         "Buscar entre las personas involucradas la estrategia para reparar los daños causados, restablecer los derechos e iniciar una reconciliación.",
-        "Establecer compromisos y hacer seguimiento del caso a fin de verificar si la solución fue efectiva o si se requiere escalar a los protocolos de situaciones Tipo II.",
+        "Establecer por escrito el compromiso del estudiante de no reincidir en la falta y hacer seguimiento para verificar su cumplimiento y si la solución fue efectiva; si hay reincidencia o la situación lo requiere, acudir a los protocolos de situaciones Tipo II.",
       ],
       medidas: [
-        { titulo: "Llamado de atención verbal", descripcion: "Cuando se comete alguna falta tipo I se hará un llamado de atención verbal en primera instancia que busca concientizar al o los estudiantes de la no conveniencia de su actuación y de cómo ésta puede afectar su proceso de formación." },
-        { titulo: "Llamado de atención formal — Reporte formativo", descripcion: "Este tipo de acción busca la mediación docente con el o los estudiantes en observancia y acompañamiento de los padres. Se registra en el observador del estudiante." },
-        { titulo: "Seguimiento del caso y los compromisos", descripcion: "Realizar seguimiento del caso y de los compromisos a fin de verificar si la solución fue efectiva o si se requiere acudir a los protocolos de las situaciones tipo II." },
+        { titulo: "Llamado de atención verbal", descripcion: "Cuando se comete alguna falta Tipo I se hará un llamado de atención verbal en primera instancia para concientizar al estudiante sobre su actuación y cómo puede afectar su proceso de formación. En el registro del llamado se dejará constancia del compromiso del estudiante de no reincidir en la falta." },
+        { titulo: "Llamado de atención formal — Reporte formativo", descripcion: "Esta acción busca la mediación docente con el estudiante, con acompañamiento de los padres. Se registra en el observador y en un acta que consigne el compromiso del estudiante de no reincidir en la falta, suscrito por el estudiante y su padre, madre o acudiente." },
+        { titulo: "Seguimiento del caso y los compromisos", descripcion: "Realizar y registrar el seguimiento para verificar el cumplimiento del compromiso de no reincidir en la falta y la efectividad de la solución. Si hay reincidencia o la situación lo requiere, acudir a los protocolos de las situaciones Tipo II." },
       ],
     },
     {
@@ -596,8 +596,8 @@ Según el artículo 43 de la Ley 1098 de 2006, las instituciones educativas tien
         "Activar la Ruta de Atención Integral para garantizar el acompañamiento oportuno a todas las partes involucradas.",
       ],
       medidas: [
-        { titulo: "Citación a padres de familia", descripcion: "Al completar tres faltas Tipo I se cita al padre, madre o acudiente para notificarle el comportamiento del estudiante; debe registrarse en el observador." },
-        { titulo: "Remisión a Rectoría o Comité de Convivencia Escolar", descripcion: "Cuando el estudiante reincida por tres o más veces o cometa una falta Tipo II, será remitido a esta instancia donde se firmará un compromiso de cambio." },
+        { titulo: "Citación a padres de familia", descripcion: "Al completar tres faltas Tipo I se cita al padre, madre o acudiente para notificarle el comportamiento del estudiante. La citación y el acta se registran en el observador e incluyen el compromiso del estudiante de no reincidir en la falta y el seguimiento acordado con la familia." },
+        { titulo: "Remisión a Rectoría o Comité de Convivencia Escolar", descripcion: "Cuando el estudiante reincida por tres o más veces o cometa una falta Tipo II, será remitido a esta instancia donde se dejará en acta el compromiso de no reincidir en la falta y las acciones de seguimiento acordadas." },
         { titulo: "Remisión a Comité de Convivencia Escolar o Consejo Directivo", descripcion: "Se realizará cuando se incumpla el acta de compromisos. El fin es establecer un último compromiso entre las partes involucradas antes de ser llevado el caso a Consejo Directivo." },
         { titulo: "Activación de la Ruta de Atención Integral", descripcion: "Cuando la situación lo requiera, se activa la Ruta de Atención Integral para garantizar la protección, el acompañamiento psicosocial y el seguimiento oportuno a todos los involucrados." },
       ],
@@ -11414,7 +11414,7 @@ function GameStdPage() {
 }
 
 // ─── STATS PAGE ───────────────────────────────────────────────────────────────
-function StatsPage() {
+function StatsDashboardPage() {
   const BAR_COLORS = [
     "rgba(37,99,255,0.6)","rgba(37,99,255,0.7)","rgba(124,58,237,0.65)",
     "rgba(37,99,255,0.8)","rgba(37,99,255,0.75)","linear-gradient(180deg,#00f5a0,#2563ff)"
@@ -11595,6 +11595,40 @@ Usa datos reales del documento. Si no hay dato usa el ejemplo. Solo JSON.`});
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function StatsPage() {
+  const [view, setView] = useState("icfes");
+
+  return (
+    <div className="module-page">
+      <div role="tablist" aria-label="Vistas de estadísticas" style={{display:"flex",gap:10,flexWrap:"wrap",marginBottom:16}}>
+        {[
+          {id:"icfes", label:"Estadística ICFES Saber 11°"},
+          {id:"panel", label:"Estadísticas actuales del panel"},
+        ].map(tab => (
+          <button
+            key={tab.id}
+            type="button"
+            role="tab"
+            aria-selected={view===tab.id}
+            onClick={() => setView(tab.id)}
+            className={`pill-tab${view===tab.id?" active":""}`}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+      <div role="tabpanel" hidden={view!=="icfes"} style={{height:"calc(100vh - 180px)",minHeight:560}}>
+        <iframe
+          title="Estadística ICFES Saber 11° de la I.E. La Amistad"
+          src="/estadistica-icfes.html"
+          style={{display:"block",width:"100%",height:"100%",border:0,borderRadius:12,background:"#eef3f9"}}
+        />
+      </div>
+      {view==="panel" && <StatsDashboardPage />}
     </div>
   );
 }

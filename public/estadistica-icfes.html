@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>I.E. La Amistad · Estadística ICFES Saber 11°</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#eef3f9;--card:#fff;--tx:#0f2a4a;--mu:#6b7f99;--ac:#1473e6;--bd:#dde6f0;--soft:#e8f1fd;--or:#ff8200}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1520;--card:#162233;--tx:#e6eef8;--mu:#8da2bb;--ac:#4a9bff;--bd:#25364c;--soft:#1b3050}}
+:root[data-theme="dark"]{--bg:#0d1520;--card:#162233;--tx:#e6eef8;--mu:#8da2bb;--ac:#4a9bff;--bd:#25364c;--soft:#1b3050}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:Inter,system-ui,Segoe UI,sans-serif}
+header{display:flex;align-items:center;gap:12px;padding:14px 24px;background:var(--card);border-bottom:1px solid var(--bd)}
+h1{font-size:22px;margin:0}header small{color:var(--ac)}
+.grid{display:grid;grid-template-columns:230px 1fr 290px;gap:16px;padding:16px 24px 8px;max-width:1400px;margin:auto}
+.bottom{display:grid;grid-template-columns:3fr 2fr;gap:16px;padding:8px 24px 24px;max-width:1400px;margin:auto}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px}
+.t{font-size:12px;letter-spacing:.12em;font-weight:700;margin:0 0 12px;text-transform:uppercase}
+.sub{display:flex;gap:10px;align-items:center;width:100%;text-align:left;background:none;border:0;color:var(--tx);padding:9px;border-radius:10px;cursor:pointer;margin-bottom:4px;font:inherit;font-size:14px}
+.sub small{display:block;color:var(--mu);font-size:12px}
+.sub .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:17px;color:#fff;flex:none}
+.sub.on{background:var(--ac);color:#fff}.sub.on small{color:#e0ecff}
+.bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:10px}
+.bar h2{margin:0;font-size:26px}.bar span{color:var(--ac);font-size:14px}
+.big{font-size:38px;font-weight:800;line-height:1}.big small{font-size:16px;color:var(--mu);font-weight:600}
+.seg{display:inline-flex;gap:4px;background:var(--soft);padding:4px;border-radius:999px;align-items:center;flex-wrap:wrap}
+.seg button{border:0;background:none;color:var(--tx);padding:6px 13px;border-radius:999px;cursor:pointer;font:inherit;font-size:13px}
+.seg button.on{background:var(--ac);color:#fff}
+.chartbox{position:relative;height:320px;border-radius:12px;background:linear-gradient(160deg,var(--soft),transparent);padding:12px}
+.empty{height:320px;display:grid;place-items:center;text-align:center;color:var(--mu);border:2px dashed var(--bd);border-radius:12px}
+.kv{padding:8px 0;border-bottom:1px dashed var(--bd)}.kv:last-child{border:0}
+.kv small{color:var(--mu);text-transform:uppercase;font-size:10.5px;letter-spacing:.06em}.kv div{font-size:14px;font-weight:600;word-break:break-word}
+select{width:100%;padding:8px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:inherit;margin-bottom:10px}
+.lad{display:flex;align-items:flex-end;gap:4px;height:120px;margin:6px 0 4px}
+.col{flex:1;display:flex;flex-direction:column-reverse;gap:2px;text-align:center;font-size:12px;font-weight:700}
+.col i{display:block;height:16px;background:var(--bd);border-radius:2px}.col.on i{background:#555}.col.cur{color:var(--or)}
+.col b{margin-bottom:2px}
+.sk{margin:6px 0;padding-left:18px;font-size:14px;line-height:1.45}.sk li::marker{color:var(--or)}
+.track{position:relative;height:14px;background:var(--soft);border-radius:99px;overflow:hidden}.fill{height:100%;background:var(--ac);border-radius:99px;transition:width .5s}
+.ticks{display:flex;justify-content:space-between;font-size:11px;color:var(--mu);margin-top:3px}
+.pill{display:inline-block;background:var(--or);color:#fff;border-radius:99px;padding:3px 12px;font-weight:700;font-size:13px}
+table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:7px 4px;border-bottom:1px solid var(--bd);text-align:right}th:first-child,td:first-child{text-align:left}
+.note{background:var(--soft);border-left:4px solid var(--ac);padding:10px 12px;border-radius:8px;font-size:13px;margin-top:10px}
+:root{--sc:#ff8200}
+body{background:linear-gradient(160deg,var(--bg),var(--soft)) fixed}
+header{display:block;text-align:center;border:0;color:#fff;padding:28px 20px 44px;border-radius:0 0 32px 32px;background:radial-gradient(circle at 15% 20%,#ff8200aa,transparent 40%),radial-gradient(circle at 85% 30%,#06b6d4aa,transparent 40%),linear-gradient(120deg,#0b3d91,#1473e6 50%,#8b5cf6);box-shadow:0 10px 30px #1473e633}
+.hd{max-width:700px;margin:auto}
+.chip{display:inline-block;background:#ffffff26;border:1px solid #ffffff55;backdrop-filter:blur(6px);padding:6px 16px;border-radius:99px;font-size:13px;letter-spacing:.04em;font-weight:600}
+header h1{font-size:clamp(28px,5vw,42px);margin:12px 0 2px;letter-spacing:-.5px;text-shadow:0 2px 12px #0006}
+header p{margin:0;font-size:18px;opacity:.95;font-weight:500}
+.grid{margin-top:-24px}
+.card{box-shadow:0 6px 20px #0f2a4a14;transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-3px);box-shadow:0 12px 28px #0f2a4a26}
+.sub{transition:all .2s}.sub:hover{background:var(--soft);transform:translateX(4px)}
+.sub.on{background:linear-gradient(120deg,var(--sc),var(--ac));color:#fff;box-shadow:0 6px 16px #0003}
+.sub .ic{box-shadow:0 4px 10px #0003;transition:transform .25s}.sub:hover .ic,.sub.on .ic{transform:scale(1.12) rotate(-6deg)}
+.t{color:var(--sc)}
+.bar h2{background:linear-gradient(90deg,var(--sc),var(--ac));-webkit-background-clip:text;background-clip:text;color:transparent}
+.big{color:var(--sc)}
+.seg button{transition:all .2s}.seg button:hover{background:#ffffff66}
+.seg button.on{background:linear-gradient(120deg,var(--sc),var(--ac));box-shadow:0 3px 10px #0003;transform:scale(1.05)}
+.chartbox{background:linear-gradient(160deg,color-mix(in srgb,var(--sc) 16%,transparent),transparent 70%);border:1px solid var(--bd)}
+.fill{background:linear-gradient(90deg,var(--ac),var(--sc))}
+.col.on i{background:var(--sc);animation:gr .6s both}.col.cur{color:var(--sc)}
+@keyframes gr{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.pill{background:linear-gradient(120deg,var(--sc),var(--ac))}
+.note{border-left-color:var(--sc)}
+.kv:hover div{color:var(--sc)}
+select{border:2px solid var(--bd);transition:border .2s}select:focus{outline:0;border-color:var(--sc)}
+/* pastel, sin degradados */
+:root{--pb:#ffe3c2;--bp:#fff;--cd:color-mix(in srgb,var(--pb) 35%,#fff)}
+body{background:var(--pb);transition:background .5s ease}
+header{background:var(--cd);color:var(--tx);box-shadow:none;border-bottom:3px solid var(--sc);padding:26px 20px 40px;transition:background .5s,border-color .5s}
+.chip{background:var(--pb);border:1px solid var(--sc);color:var(--tx);backdrop-filter:none}
+header h1{text-shadow:none;color:var(--tx)}
+.card{background:var(--cd);box-shadow:0 2px 10px #0000000f;transition:background .5s,transform .25s,box-shadow .25s}
+.sub,.sub:hover{background:var(--bp)}.sub:hover{filter:brightness(.96)}
+.sub.on{background:var(--bp);color:var(--tx);box-shadow:inset 0 0 0 2px var(--sc)}.sub.on small{color:var(--mu)}
+.sub .ic{box-shadow:none}
+.bar h2{background:none;color:var(--tx)}
+.seg{background:var(--pb)}.seg button:hover{background:#ffffff88}
+.seg button.on{background:var(--sc);box-shadow:none}
+.chartbox{background:color-mix(in srgb,var(--pb) 22%,#fff)}
+.fill,.pill{background:var(--sc)}
+.note{background:var(--pb)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--cd:var(--card)}
+body{background:color-mix(in srgb,var(--pb) 14%,#0d1520)}
+.sub,.sub:hover,.sub.on{background:color-mix(in srgb,var(--bp) 16%,var(--card))}
+.chartbox{background:var(--card)}.seg,.note{background:var(--soft)}header{background:var(--card)}}
+.gw{max-width:1400px;margin:0 auto;padding:0 24px 24px}
+.lvs{display:grid;grid-template-columns:repeat(var(--n,5),1fr);gap:10px;margin:8px 0 14px}
+.lvb{border:0;border-radius:14px;padding:12px;text-align:left;cursor:pointer;color:var(--tx);background:var(--bp);font:inherit;transition:transform .2s,box-shadow .2s}
+.lvb:hover{transform:translateY(-3px)}.lvb b{font-size:24px;display:block}.lvb span{font-size:13px;display:block}.lvb small{color:var(--mu);font-size:12px}
+.lvb.on{box-shadow:inset 0 0 0 3px var(--sc)}
+.gd{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}.gd p.t{margin-bottom:6px}.gd p{margin:0;font-size:14px;line-height:1.5}
+.gh{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.gh h3{margin:0;font-size:22px}.src{font-size:12px;color:var(--mu);background:var(--pb);padding:3px 10px;border-radius:99px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .lvb{background:color-mix(in srgb,var(--bp) 16%,var(--card))}}
+@media(max-width:900px){.lvs{grid-template-columns:repeat(2,1fr)}.gd{grid-template-columns:1fr}.gw{padding:0 12px 12px}}
+@media(max-width:900px){.grid,.bottom{grid-template-columns:1fr;padding:12px}.subs{display:flex;overflow-x:auto;gap:6px}.sub{width:auto;white-space:nowrap}}
+</style></head><body>
+<header><div class="hd"><span class="chip">📊 Estadística ICFES · Saber 11° · 2024 – 2026</span><h1>I.E. La Amistad</h1><p>Mag Anderson</p></div></header>
+<div class="grid">
+ <aside class="card"><p class="t">Pruebas</p><div class="subs" id="subs"></div></aside>
+ <main class="card" id="main"></main>
+ <aside class="card"><p class="t">Estudiante</p><select id="stu"></select>
+  <div class="seg" id="years" style="margin-bottom:8px"></div><div id="det"></div></aside>
+</div>
+<div class="bottom"><section class="card" id="b1"></section><section class="card" id="b2"></section></div>
+<div class="gw" id="guide"></div>
+
+<script>
+const YEARS=[2024,2025,2026];
+const T={
+ res:{n:"Resumen general",ic:"🏆",c:"#ff8200"},
+ lec:{n:"Lectura Crítica",ic:"📖",c:"#8b5cf6",lv:[1,2,3,4],w:3},
+ mat:{n:"Matemáticas",ic:"➗",c:"#1473e6",lv:[1,2,3,4],w:3},
+ soc:{n:"Sociales y Ciudadanas",ic:"🌎",c:"#e5484d",lv:[1,2,3,4],w:3},
+ nat:{n:"Ciencias Naturales",ic:"🧬",c:"#14a44d",lv:[1,2,3,4],w:3},
+ ing:{n:"Inglés",ic:"🔤",c:"#f59e0b",lv:["A-","A1","A2","B1","B+"],w:1}};
+const PB={res:"#ffe3c2",lec:"#e4d9ff",mat:"#d3e6ff",soc:"#ffd6dc",nat:"#d1f1dc",ing:"#fff0b8"};
+const SK={
+ lec:{2:["Identifica información local del texto.","Identifica la estructura de textos continuos y discontinuos.","Identifica relaciones básicas entre componentes del texto.","Identifica fenómenos semánticos básicos: sinónimos y antónimos.","Reconoce en un texto la diferencia entre proposición y párrafo.","Reconoce el sentido local y global del texto.","Identifica intenciones comunicativas explícitas.","Identifica relaciones básicas: contraste, similitud y complementación, entre textos presentes."],1:["El estudiante que se ubica en este nivel probablemente identifica elementos literales en textos continuos y discontinuos sin establecer relaciones de significado."],3:["Jerarquiza la información presente en un texto.","Infiere información implícita en textos continuos y discontinuos.","Establece relaciones intertextuales: definición, causa-efecto, oposición, y antecedente-consecuente, entre textos presentes.","Reconoce la intención comunicativa del texto.","Relaciona marcadores textuales en la interpretación de textos.","Reconoce la función de figuras literarias.","Identifica el uso del lenguaje en contexto.","Analiza y sintetiza la información contenida en un texto.","Identifica la estructura sintáctica en textos discontinuos.","Establece la validez de argumentos en un texto."],4:["Propone soluciones a problemas de interpretación que subyacen en un texto.","Evalúa contenidos, estrategias discursivas y argumentativas presentes en un texto.","Relaciona información de dos o más textos o fragmentos de texto para llegar a una conclusión.","Aplica conceptos de análisis literario para caracterizar diferentes elementos en un texto.","Reconoce los contextos como elementos importantes en la valoración de un texto.","Selecciona elementos locales y construye argumentos que sustentan una tesis con base en textos relacionados.","Asume una postura crítica frente a los planteamientos de un texto.","Plantea hipótesis de lectura a partir de las ideas presentes en un texto."]},
+ mat:{4:["Resuelve problemas que requieren interpretar información de eventos dependientes.","Realiza transformaciones de subconjuntos de información que pueden requerir el uso de operaciones complejas (cálculos de porcentajes).","Resuelve problemas que requieren construir una representación auxiliar (gráficas y fórmulas) como paso intermedio para su solución.","Modela usando lenguaje algebraico información dada en lenguaje natural, tablas o representaciones geométricas.","Manipula expresiones algebraicas o aritméticas haciendo uso de las propiedades de las operaciones.","Modela fenómenos variacionales no explícitos haciendo uso de lenguaje simbólico o gráficas.","Reconoce en diferentes formatos el espacio muestral de un experimento aleatorio.","Resuelve problemas de conteo que requieren el uso de permutaciones.","Justifica si hay falta de información en una situación problema para tomar una decisión.","Toma decisiones sobre la veracidad o falsedad de una afirmación cuando requiere el uso de varias propiedades o conceptualizaciones formales."],1:["El estudiante que se ubica en este nivel probablemente puede leer información puntual (un dato, por ejemplo) relacionada con situaciones cotidianas y presentada en tablas o gráficas con escala explícita, cuadrícula o, por lo menos, líneas horizontales, pero puede tener dificultades al comparar distintos conjuntos de datos, involucrar diferentes variables o analizar situaciones alejadas de su vida diaria."],3:["Selecciona la gráfica (que puede ser de doble entrada) correspondiente a la información de una tabla, o a partir de verbalizaciones (características de crecimiento o decrecimiento deseadas), teniendo en cuenta para la selección la escala, el tipo de variable y el tipo de gráfica.","Compara información gráfica que requiere algunas manipulaciones aritméticas.","Señala información representada en formatos no convencionales (mapas o infografías).","Reconoce errores ocurridos al realizar una transformación entre diferentes tipos de registro.","Reconoce desarrollos planos de una forma tridimensional y viceversa.","Compara la probabilidad de eventos simples en diversos contextos (casos favorables/casos posibles), incluso cuando los casos posibles de cada evento son diferentes.","Selecciona información necesaria para resolver problemas que involucran operaciones aritméticas.","Selecciona información necesaria para resolver problemas que involucran características medibles de figuras geométricas elementales (triángulos, cuadriláteros y circunferencias).","Cambia la escala cuando la transformación no es convencional.","Justifica afirmaciones utilizando planteamientos y operaciones aritméticas o haciendo uso directo de un concepto, es decir, a partir de un único argumento.","Identifica información relevante cuando el tipo de registro contiene información de más de tres categorías.","Hace manipulaciones algebraicas sencillas (aritmética de términos semejantes)."],2:["Compara datos de dos variables presentadas en una misma gráfica sin necesidad de hacer operaciones aritméticas.","Identifica valores o puntos representativos en diferentes tipos de registro a partir del significado que tienen en la situación.","Compara la probabilidad de eventos simples (casos favorables/casos posibles) cuando los casos posibles son los mismos en ambos eventos y en contextos similares a los presentados en el aula.","Toma decisiones sobre la veracidad o falsedad de una afirmación cuando esta se puede explicar verbalizando la lectura directa que se hace de la información.","Cambia gráficas de barras a tablas de doble entrada.","Reconoce e interpreta según el contexto el significado de promedio simple, moda, mayor, menor, máximo y mínimo."]},
+ soc:{1:["El estudiante que se ubica en este nivel podría reconocer algunos derechos ciudadanos en situaciones sencillas. Adicionalmente, podría reconocer dimensiones presentes en una problemática o sus propuestas de solución, e identificar creencias que explican algunos comportamientos. Este estudiante probablemente no está en capacidad de utilizar conceptos de las ciencias sociales o modelos conceptuales, ni de reconocer principios constitucionales o de analizar enunciados."],3:["Reconoce intenciones y prejuicios, así como argumentos similares o diferentes dados en un contexto o una situación específica.","Identifica dimensiones (económicas, políticas, culturales, ambientales, etc.) involucradas en situaciones, problemáticas o propuestas de solución.","Identifica y compara opiniones e intereses de diferentes actores involucrados en una situación problemática y establece relaciones entre esas posturas y posibles soluciones.","Reconoce algunos conceptos básicos de las ciencias sociales.","Identifica supuestos y usos de algunos modelos conceptuales.","Relaciona contextos históricos y/o geográficos con fuentes, situaciones y prácticas sociales.","Valora la información contenida en una fuente y reconoce sus alcances."],2:["Identifica derechos ciudadanos y deberes del Estado establecidos en la Constitución Política de Colombia.","Relaciona la conducta de una persona con su forma de ver la vida.","Reconoce los efectos de una solución y las dimensiones que privilegia.","Identifica contextos o procesos en los que se inscribe una fuente o evento."]},
+ nat:{1:["El estudiante que se ubica en este nivel muy posiblemente alcanza a reconocer información explícita, presentada de manera ordenada en tablas o gráficas, con un lenguaje cotidiano y que implica la lectura de una sola variable independiente. Por lo tanto, estos estudiantes demuestran un insuficiente desarrollo de la competencia Indagación definida en el marco teórico de la prueba."],2:["Identifica patrones y características a partir de información presentada en textos, gráficas y tablas.","Relaciona esquemas con nociones básicas del conocimiento científico.","Establece predicciones a partir de datos presentados en tablas, gráficas y esquemas en donde se presentan patrones claramente crecientes o decrecientes.","Ordena datos e información en gráficas y tablas."],3:["Establece relaciones de causa-efecto usando información no suministrada.","Interpreta gráficas, tablas y modelos para hacer predicciones.","Establece relaciones entre conceptos, leyes y teorías científicas con diseños experimentales y sus resultados.","Diferencia entre evidencias y conclusiones.","Plantea hipótesis basadas en evidencias.","Relaciona variables para explicar algunos fenómenos naturales."]},
+ ing:{"A1":["El estudiante es capaz de comprender y utilizar expresiones cotidianas de uso muy frecuente, así como frases sencillas destinadas a satisfacer necesidades inmediatas.","Puede presentarse a sí mismo y a otros, pedir y dar información personal básica sobre su domicilio, sus pertenencias y las personas que conoce.","Puede relacionarse de forma elemental con su interlocutor siempre que este hable despacio y con claridad y esté dispuesto a cooperar."],"A2":["El estudiante es capaz de comprender frases y expresiones de uso frecuente relacionadas con áreas de experiencia que le son especialmente relevantes (información básica sobre sí mismo y su familia, compras, lugares de interés, ocupaciones, etc.).","Sabe comunicarse a la hora de llevar a cabo tareas simples y cotidianas que no requieran más que intercambios sencillos y directos de información sobre cuestiones que le son conocidas o habituales.","Sabe describir en términos sencillos aspectos de su pasado y su entorno, así como cuestiones relacionadas con sus necesidades inmediatas."],"A-":["El estudiante promedio clasificado en este nivel no supera las preguntas de menor complejidad de la prueba."]}};
+/* Datos: una fila por estudiante y año → [nombre, documento, registro, año, aplicación, publicación, percentil global, [lec,mat,soc,nat,ing] = [puntaje, percentil, nivel], extras] */
+const RAW=[
+["J.P.A.L.","","EST-01",2024,"18/08/2024","01/11/2024",63,[[68,91,4],[45,29,2],[51,59,2],[60,80,3],[41,18,"A-"]]],
+["K.L.P.P.","","EST-02",2024,"18/08/2024","01/11/2024",71,[[62,77,3],[63,79,3],[48,49,2],[56,69,3],[58,72,"A2"]]],
+["Y.C.C.C.","","EST-03",2024,"18/08/2024","01/11/2024",36,[[53,45,3],[35,10,1],[56,72,3],[45,33,2],[41,20,"A-"]]],
+["W.C.G.","","EST-04",2024,"18/08/2024","01/11/2024",14,[[33,3,1],[49,40,2],[41,29,2],[37,12,1],[34,7,"A-"]]],
+["J.F.F.T.","","EST-05",2025,"31/08/2025","10/10/2025",10,[[36,4,2],[35,10,1],[35,16,1],[43,25,2],[47,35,"A-"]]],
+["J.D.F.C.","","EST-06",2026,"26/07/2026","25/09/2026",78,[[56,63,3],[59,73,3],[58,79,3],[63,88,3],[59,72,"A2"]]],
+["K.J.G.G.","","EST-07",2026,"26/07/2026","25/09/2026",57,[[54,55,3],[54,62,3],[57,76,3],[44,27,2],[53,58,"A1"]]],
+["K.D.P.B.","","EST-08",2026,"26/07/2026","25/09/2026",16,[[34,3,1],[46,36,2],[43,33,2],[40,16,1],[39,14,"A-"]]],
+["M.J.F.P.","","EST-09",2026,"26/07/2026","25/09/2026",53,[[53,48,3],[56,66,3],[54,67,2],[41,19,2],[56,67,"A1"]]],
+["P.A.P.V.","","EST-10",2026,"26/07/2026","25/09/2026",96,[[69,96,4],[71,96,4],[69,97,3],[70,98,3],[56,65,"A1"]]],
+["V.T.P.M.","","EST-11",2026,"26/07/2026","25/09/2026",null,[[35,4,1],[37,13,2],[27,1,1],[32,1,1],null]],
+["A.D.C.C.","","EST-12",2026,"26/07/2026","25/09/2026",10,[[40,11,2],[43,26,2],[33,7,1],[37,9,1],[43,23,"A-"]]],
+["J.A.R.F.","","EST-13",2025,"31/08/2025","10/10/2025",78,[[65,84,3],[57,61,3],[66,91,3],[58,74,3],[48,40,"A1"]]],
+["J.D.J.A.G.","","EST-14",2025,"31/08/2025","10/10/2025",73,[[59,66,3],[55,55,3],[62,85,3],[60,78,3],[55,61,"A1"]]],
+["K.S.C.G.","","EST-15",2026,"26/07/2026","25/09/2026",21,[[41,12,2],[46,38,2],[40,22,1],[43,25,2],[42,22,"A-"]]]
+];
+const MUN="Moniquirá - Boyacá",DANE="215664000055",IE="IE Técnica La Amistad - Sede Principal",KEYS=["lec","mat","soc","nat","ing"];
+/* Puntaje global oficial: (Σ puntaje×ponderación ÷ 13)×5; sin Inglés: (Σ 4 pruebas ÷ 4)×5 */
+const calcGlobal=t=>{const ing=t.ing.s!=null,w=ing?[3,3,3,3,1]:[1,1,1,1,0];let n=0;KEYS.forEach((k,i)=>{if(t[k].s!=null)n+=t[k].s*w[i]});return Math.round(n/(ing?13:4)*5)};
+const STUDENTS=[];
+RAW.forEach(([name,doc,reg,y,apl,pub,pg,v,x])=>{x=x||{};
+ let st=STUDENTS.find(a=>a.reg===reg);
+ if(!st){st={name,doc,reg,mun:x.mun||MUN,dane:DANE,ie:IE,years:{2024:null,2025:null,2026:null}};if(x.disc)st.disc=x.disc;STUDENTS.push(st)}
+ const t={};KEYS.forEach((k,i)=>t[k]=v[i]?{s:v[i][0],p:v[i][1],l:v[i][2]}:{s:null,p:null,l:null});
+ st.years[y]={apl,pub,pg,t,g:calcGlobal(t)};if(x.ref)st.years[y].ref=x.ref;
+});
+let si=-1,k="res",type="bar",yi=2,metric="s";
+const $=id=>document.getElementById(id);let chart;
+$("subs").innerHTML=Object.keys(T).map(i=>`<button class="sub" data-k="${i}" style="--bp:${PB[i]}"><span class="ic" style="background:${T[i].c}">${T[i].ic}</span><span>${T[i].n}</span></button>`).join("");
+$("stu").innerHTML='<option value="-1">👥 Todos los estudiantes ('+STUDENTS.length+')</option>'+STUDENTS.map((s,i)=>`<option value="${i}">${s.name}</option>`).join("");
+$("years").innerHTML=YEARS.map((y,i)=>`<button data-y="${i}">${y}</button>`).join("");
+$("subs").onclick=e=>{const b=e.target.closest("button");if(b){k=b.dataset.k;render()}};
+$("years").onclick=e=>{const b=e.target.closest("button");if(b){yi=+b.dataset.y;render()}};
+$("stu").onchange=e=>{si=+e.target.value;render()};
+document.addEventListener("click",e=>{const b=e.target.closest("#types button");if(b){type=b.dataset.t;render()}});
+
+const COL=["#1473e6","#e5484d","#14a44d","#f59e0b","#8b5cf6","#06b6d4","#ec4899","#0ea5e9","#84cc16","#a855f7","#f97316","#14b8a6"];
+const short=n=>n.split(" ").slice(0,2).join(" ");
+const avg=a=>{a=a.filter(v=>v!=null);return a.length?a.reduce((x,y)=>x+y,0)/a.length:0};const nz=v=>v==null?"—":v;
+const KS=["lec","mat","soc","nat","ing"];
+document.addEventListener("click",e=>{
+ const m=e.target.closest("#metric button");if(m){metric=m.dataset.m;render();return}
+ const r=e.target.closest("tr[data-i]");if(r){si=+r.dataset.i;$("stu").value=si;render()}
+});
+
+/* Guía de niveles de Inglés. off=true: texto del reporte ICFES; off=false: referencia general (MCER), el reporte no trae ese nivel */
+const GUIA={
+"A-":{t:"Inicial",c:"#ffd6dc",off:1,sig:"Es el nivel más bajo de la prueba. El estudiante promedio clasificado aquí no supera las preguntas de menor complejidad: todavía no responde de forma consistente ni lo más básico, es decir, aún no alcanza A1.",
+ hace:["Reconoce algunas palabras o frases aisladas, sobre todo si tienen apoyo de imágenes.","Le cuesta entender mensajes o textos muy cortos, incluso sobre temas cotidianos.","Aún no se comunica con frases completas."],
+ mej:["Construir vocabulario base: saludos, números, colores, familia, objetos, rutina diaria.","Dominar el verbo to be y el presente simple en frases cortas.","Leer carteles, avisos y mensajes de una o dos líneas, con apoyo de imágenes.","Practicar 10–15 minutos diarios: escuchar, repetir y escribir frases simples."]},
+"A1":{t:"Básico",c:"#ffe3c2",off:1,sig:"Comprende y utiliza expresiones cotidianas de uso muy frecuente, así como frases sencillas destinadas a satisfacer necesidades inmediatas.",
+ hace:["Se presenta a sí mismo y a otros.","Pide y da información personal básica: su domicilio, sus pertenencias y las personas que conoce.","Se relaciona de forma elemental, siempre que su interlocutor hable despacio, con claridad y esté dispuesto a cooperar."],
+ mej:["Ampliar vocabulario de temas cotidianos: familia, compras, lugares, ocupaciones.","Usar presente simple y continuo, there is / there are, can y preguntas básicas.","Empezar con el pasado simple (was / were y verbos regulares).","Leer textos cortos (anuncios, correos breves) y escribir descripciones de 3 a 5 oraciones."]},
+"A2":{t:"Pre-intermedio",c:"#fff0b8",off:1,sig:"Comprende frases y expresiones de uso frecuente relacionadas con áreas de experiencia que le son especialmente relevantes: información sobre sí mismo y su familia, compras, lugares de interés, ocupaciones.",
+ hace:["Se comunica en tareas simples y cotidianas que requieren intercambios sencillos y directos de información sobre cuestiones conocidas o habituales.","Describe en términos sencillos aspectos de su pasado y su entorno.","Expresa cuestiones relacionadas con sus necesidades inmediatas."],
+ mej:["Consolidar el pasado simple (también irregulares) y aprender el futuro (will / going to).","Usar comparativos, superlativos y conectores: because, but, so, however.","Leer textos más largos (historias, noticias sencillas) e identificar la idea principal.","Escuchar audios a velocidad normal y escribir párrafos de 8 a 10 oraciones contando experiencias."]},
+"B1":{t:"Intermedio",c:"#d1f1dc",off:0,sig:"Es el nivel de usuario independiente. Comprende los puntos principales de textos claros y en lenguaje estándar sobre asuntos conocidos del trabajo, el estudio o el ocio.",
+ hace:["Se desenvuelve en la mayoría de situaciones que pueden surgir en un viaje.","Produce textos sencillos y coherentes sobre temas que le son familiares o de interés personal.","Describe experiencias, deseos y planes, y justifica brevemente sus opiniones."],
+ mej:["Dominar el present perfect, los condicionales y la voz pasiva.","Aprender phrasal verbs y vocabulario de temas más abstractos o académicos.","Leer artículos y textos argumentativos, deduciendo el significado por el contexto.","Escribir textos con argumentos, ejemplos y conectores variados."]},
+"B+":{t:"Avanzado de la prueba",c:"#d3e6ff",off:0,sig:"Es el nivel más alto de la prueba: supera las preguntas del nivel B1 y se acerca a B2. Indica un manejo sólido del idioma en situaciones variadas.",
+ hace:["Comprende textos más extensos y complejos, incluidos los argumentativos.","Se expresa con mayor fluidez y precisión.","Identifica intenciones y opiniones del autor, y relaciona ideas entre varios textos."],
+ mej:["Mantener el contacto diario con el inglés: noticias, podcasts, series y artículos.","Ampliar vocabulario académico y escribir ensayos cortos.","Practicar conversación real o debates con hablantes fluidos.","Considerar un examen de certificación internacional para validar el nivel."]}};
+const PAL=["#ffd6dc","#fff0b8","#d1f1dc","#d3e6ff"],NIV=["Inicial","Básico","Intermedio","Avanzado"];
+/* Pruebas con niveles 1–4: sig = qué significa, mej = cómo mejorar para subir de nivel, ref = habilidades de niveles que el reporte no trae */
+const GN={
+lec:{sig:["Identifica elementos literales (lo que el texto dice de forma directa) en textos continuos y discontinuos, sin establecer relaciones de significado.","Reconoce información local y la estructura del texto, entiende su sentido local y global y establece relaciones básicas entre sus partes (contraste, similitud, complementación).","Va más allá de lo literal: infiere información implícita, jerarquiza ideas, reconoce la intención comunicativa y analiza la validez de los argumentos.","Evalúa y critica: relaciona varios textos para llegar a conclusiones, asume una postura crítica, plantea hipótesis de lectura y propone soluciones a problemas de interpretación."],
+ mej:[["Leer textos cortos y subrayar la idea principal de cada párrafo.","Responder quién, qué, cuándo y dónde con evidencia del texto.","Practicar sinónimos, antónimos y la diferencia entre oración y párrafo.","Leer textos discontinuos: avisos, tablas e infografías."],["Practicar inferencias: ¿qué quiere decir el texto sin decirlo?","Resumir y jerarquizar las ideas de un texto.","Identificar la intención del autor: informar, persuadir, narrar.","Reconocer relaciones de causa-efecto, oposición y definición entre textos."],["Leer dos textos del mismo tema y comparar sus ideas.","Evaluar si un argumento es válido y qué estrategias usa el autor.","Escribir una tesis y defenderla con evidencias del texto.","Analizar figuras literarias y el uso del lenguaje en contexto."],["Leer a diario editoriales, columnas de opinión y ensayos.","Debatir y escribir textos argumentativos propios.","Leer literatura variada y analizar los recursos del autor.","Practicar simulacros tipo Saber con tiempo limitado."]]},
+mat:{sig:["Lee información puntual (un dato) en tablas o gráficas de situaciones cotidianas con escala clara, pero tiene dificultades para comparar conjuntos de datos, combinar variables o analizar situaciones alejadas de su vida diaria.","Compara datos en una misma gráfica, identifica valores representativos, compara probabilidades simples y entiende promedio, moda, máximo y mínimo.","Resuelve problemas con operaciones aritméticas y figuras geométricas, transforma información entre tablas y gráficas, justifica con un argumento y hace manipulaciones algebraicas sencillas.","Modela situaciones con álgebra, resuelve problemas de eventos dependientes, porcentajes, conteo y permutaciones, y decide con varias propiedades formales."],
+ mej:[["Practicar lectura de tablas y gráficas de barras con situaciones de la vida diaria.","Reforzar operaciones básicas, fracciones y porcentajes simples.","Calcular promedio, moda, máximo y mínimo.","Entender la probabilidad como casos favorables sobre casos posibles."],["Resolver problemas de varios pasos que combinen operaciones.","Pasar información entre tablas y gráficas, cambiando la escala.","Trabajar medidas de triángulos, cuadriláteros y circunferencias.","Aprender expresiones algebraicas sencillas y justificar cada respuesta por escrito."],["Modelar situaciones con ecuaciones y gráficas.","Dominar porcentajes, razones y proporciones.","Estudiar eventos dependientes, espacio muestral, conteo y permutaciones.","Identificar cuándo falta información para tomar una decisión."],["Practicar problemas de modelación y variación.","Resolver simulacros con tiempo limitado.","Explicar a otros el procedimiento de cada solución.","Explorar probabilidad y álgebra de mayor dificultad."]]},
+soc:{sig:["Reconoce algunos derechos ciudadanos en situaciones sencillas, dimensiones presentes en una problemática y creencias que explican ciertos comportamientos; aún no usa conceptos de las ciencias sociales ni modelos conceptuales.","Identifica derechos ciudadanos y deberes del Estado según la Constitución, relaciona la conducta de una persona con su forma de ver la vida y reconoce los efectos de una solución y el contexto de una fuente.","Reconoce intenciones y prejuicios, identifica dimensiones (económicas, políticas, culturales, ambientales), compara opiniones e intereses de distintos actores y usa conceptos básicos de las ciencias sociales.","Es el nivel más alto: integra conceptos y modelos de las ciencias sociales para analizar problemáticas complejas, evaluar argumentos y valorar fuentes y soluciones."],
+ ref:{4:["Analiza problemáticas complejas desde varias dimensiones a la vez.","Evalúa fuentes, sus alcances y sus limitaciones.","Propone y valora soluciones considerando actores y consecuencias."]},
+ mej:[["Leer la Constitución: derechos, deberes y mecanismos de participación.","Leer noticias cortas e identificar cuál es el problema.","Relacionar las acciones de una persona con sus creencias.","Analizar casos de convivencia en el colegio y la comunidad."],["Comparar opiniones e intereses de distintos actores en un mismo problema.","Identificar dimensiones: económica, política, cultural y ambiental.","Reconocer prejuicios y argumentos en textos y noticias.","Aprender conceptos básicos: Estado, democracia, justicia y economía."],["Analizar modelos conceptuales y para qué sirven.","Evaluar fuentes: qué tan confiables son y qué alcance tienen.","Estudiar problemáticas con varias dimensiones y los efectos de cada solución.","Leer fuentes históricas y textos de opinión."],["Seguir noticias nacionales e internacionales con mirada crítica.","Contrastar fuentes distintas sobre un mismo hecho.","Participar en debates y proyectos ciudadanos.","Practicar simulacros tipo Saber."]]},
+nat:{sig:["Reconoce información explícita presentada de forma ordenada en tablas o gráficas, con lenguaje cotidiano y una sola variable; muestra un desarrollo insuficiente de la competencia de indagación.","Identifica patrones en textos, gráficas y tablas, relaciona esquemas con nociones científicas básicas y hace predicciones cuando los patrones son claramente crecientes o decrecientes.","Establece relaciones de causa-efecto con información no dada, interpreta modelos para predecir, relaciona teorías con diseños experimentales, plantea hipótesis y diferencia evidencias de conclusiones.","Es el nivel más alto: integra conceptos de biología, química, física y ciencias de la Tierra para analizar situaciones complejas y evaluar diseños experimentales."],
+ ref:{4:["Analiza situaciones complejas con varias variables a la vez.","Evalúa diseños experimentales y la solidez de sus conclusiones.","Integra conceptos de distintas áreas de las ciencias naturales."]},
+ mej:[["Practicar la lectura de tablas y gráficas simples con una sola variable.","Reforzar el vocabulario científico básico.","Describir con palabras lo que muestra un experimento sencillo.","Hacer experimentos caseros y anotar lo observado."],["Identificar patrones crecientes y decrecientes en datos.","Relacionar esquemas con conceptos de biología, química y física.","Hacer predicciones a partir de gráficas.","Practicar ordenar datos en tablas y gráficas."],["Plantear hipótesis y diseñar experimentos sencillos.","Diferenciar claramente evidencia de conclusión.","Trabajar con varias variables a la vez.","Relacionar leyes y teorías con resultados experimentales."],["Analizar experimentos reales y sus conclusiones.","Profundizar en física, química, biología y ciencias de la Tierra.","Leer artículos de divulgación científica.","Practicar simulacros tipo Saber."]]}};
+const gl=l=>{if(k==="ing")return GUIA[l];const n=GN[k],i=T[k].lv.indexOf(l),h=SK[k][l];return{t:NIV[i],c:PAL[i],off:h?1:0,sig:n.sig[i],hace:h||n.ref[l],mej:n.mej[i]}};
+let eng=null,engKey="";
+function guide(L,S,Y){
+ const el=$("guide");if(k==="res"){el.innerHTML="";return}
+ const lv=T[k].lv,yr=YEARS[yi],all=[];
+ STUDENTS.forEach(x=>YEARS.forEach(y=>{const r=x.years[y]&&x.years[y].t[k];if(r&&r.s!=null)all.push({s:r.s,l:r.l})}));
+ const pool=si<0?L.filter(x=>x.years[yr].t[k].s!=null):(Y&&Y.t[k].s!=null?[S]:[]);
+ const cnt=l=>pool.filter(x=>x.years[yr].t[k].l===l).length;
+ const own=si>=0&&Y&&Y.t[k].l!=null?Y.t[k].l:null;
+ const ek=k+"|"+si+"|"+yi;if(engKey!==ek){eng=null;engKey=ek}
+ if(eng!=null&&!lv.includes(eng))eng=null;
+ const cur=eng||own||(pool.length?lv.slice().sort((a,b)=>cnt(b)-cnt(a))[0]:lv[0]);
+ const g=gl(cur),ix=lv.indexOf(cur),nxt=lv[ix+1],nm=l=>typeof l==="number"?"nivel "+l:l;
+ const rg=l=>{const v=all.filter(x=>x.l===l).map(x=>x.s);return v.length?Math.min(...v)+" – "+Math.max(...v)+" pts":"sin datos aún"};
+ const names=pool.filter(x=>x.years[yr].t[k].l===cur).map(x=>short(x.name));
+ let ori="";
+ if(si>=0&&Y&&Y.t[k].s==null)ori=`<div class="note">${short(S.name)} no presentó esta prueba en ${yr}.</div>`;
+ if(own){const r=Y.t[k],nv=nxt!=null?all.filter(x=>x.l===nxt).map(x=>x.s):[];
+  ori=`<div class="note"><b>${short(S.name)}</b> obtuvo <b>${r.s}/100</b> (percentil ${r.p}) en ${T[k].n}: ${nm(own)}.`+(nxt!=null?(nv.length?` En este grupo, quienes están en ${nm(nxt)} tienen desde ${Math.min(...nv)} puntos; a ${short(S.name)} le faltan unos <b>${Math.max(0,Math.min(...nv)-r.s)}</b> puntos para ese rango (dato orientativo, no es el corte oficial).`:` Aún no hay estudiantes en ${nm(nxt)} en este grupo.`)+` Prioridad: ${gl(own).mej[0]}`:" Ya está en el nivel más alto.")+`</div>`}
+ const li=a=>`<ul class="sk" style="margin:0">${a.map(x=>`<li>${x}</li>`).join("")}</ul>`;
+ el.innerHTML=`<section class="card"><p class="t">Guía de niveles de ${T[k].n} · qué significa cada uno y cómo mejorar</p>
+ <div class="lvs" style="--n:${lv.length}">${lv.map(l=>`<button class="lvb ${l===cur?"on":""}" data-l="${l}" style="--bp:${gl(l).c}"><b>${typeof l==="number"?"Nivel "+l:l}</b><span>${gl(l).t}</span><small>${cnt(l)} estudiante${cnt(l)===1?"":"s"}${own===l?" · nivel actual":""}</small></button>`).join("")}</div>
+ <div class="gh"><h3>${typeof cur==="number"?"Nivel "+cur:"Nivel "+cur} · ${g.t}</h3><span class="src">${g.off?"Habilidades según el reporte ICFES":"Referencia general: el reporte no trae este nivel"}</span></div>
+ <div class="gd"><div><p class="t">Qué significa</p><p>${g.sig}</p></div><div><p class="t">Qué sabe hacer</p>${li(g.hace)}</div><div><p class="t">${nxt!=null?"Cómo mejorar para llegar al "+nm(nxt):"Cómo seguir creciendo"}</p>${li(g.mej)}</div></div>
+ <div class="note">Puntajes observados en este grupo para ${nm(cur)}: <b>${rg(cur)}</b>. ${names.length?`Estudiantes en este nivel (${yr}): <b>${names.join(", ")}</b>.`:`Nadie está en este nivel en ${yr}.`}</div>${ori}</section>`;
+}
+document.addEventListener("click",e=>{const b=e.target.closest(".lvb");if(b){eng=T[k].lv.find(x=>String(x)===b.dataset.l);render()}});
+function render(){
+ const st=document.documentElement.style;st.setProperty("--sc",T[k].c);st.setProperty("--pb",PB[k]);
+ const all=si<0,yr=YEARS[yi],L=STUDENTS.filter(s=>s.years[yr]);
+ const S=all?null:STUDENTS[si],Y=all?null:S.years[yr];
+ document.querySelectorAll(".sub").forEach(b=>b.classList.toggle("on",b.dataset.k===k));
+ document.querySelectorAll("#years button").forEach((b,i)=>{b.classList.toggle("on",i===yi);b.style.opacity=STUDENTS.some(s=>s.years[YEARS[i]])?1:.5});
+ const kv=a=>a.map(([x,y])=>`<div class="kv"><small>${x}</small><div>${y}</div></div>`).join("");
+ if(all){const best=L.slice().sort((a,b)=>b.years[yr].g-a.years[yr].g)[0];
+  $("det").innerHTML=kv([["Curso",STUDENTS.length+" estudiantes"],["Establecimiento",STUDENTS[0].ie],["Con datos "+yr,L.length],["Promedio global",L.length?Math.round(avg(L.map(s=>s.years[yr].g)))+" /500":"—"],["Mejor puntaje global",best?short(best.name)+" · "+best.years[yr].g:"—"],["Aplicación",L.length?L[0].years[yr].apl:"—"]]);
+ }else $("det").innerHTML=kv([["Nombre",S.name],["Identificación",S.doc],["N° de registro",S.reg],["Municipio",S.mun],["Código DANE",S.dane],["Establecimiento",S.ie],["Aplicación",Y?Y.apl:"—"],["Publicación",Y?Y.pub:"—"]].concat(S.disc?[["Discapacidad",S.disc]]:[]));
+ const d=T[k];
+ const types=`<div class="seg" id="types">${[["line","Líneas"],["bar","Barras"],["area","Área"],["radar","Radar"]].map(([a,b])=>`<button data-t="${a}" class="${type===a?"on":""}">${b}</button>`).join("")}</div>`;
+ const met=all?`<div class="seg" id="metric" style="margin-left:8px">${[["s","Puntaje"],["p","Percentil"]].map(([a,b])=>`<button data-m="${a}" class="${metric===a?"on":""}">${b}</button>`).join("")}</div>`:"";
+ const noData=k==="res"&&(all?!L.length:!Y);
+ const sub=k==="res"?`Año ${yr} · ${all?L.length+" estudiantes · comparación por prueba":"puntaje y percentil por prueba"}`:(all?"Evolución 2024 – 2026 · todos los estudiantes":"Evolución 2024 – 2026");
+ let big="";
+ if(all&&L.length)big=k==="res"?`<div class="big">${Math.round(avg(L.map(s=>s.years[yr].g)))}<small> /500 · prom.</small></div>`:`<div class="big">${avg(L.map(s=>s.years[yr].t[k].s)).toFixed(1)}<small> /100 · prom.</small></div>`;
+ else if(!all&&Y)big=k==="res"?`<div class="big">${Y.g}<small> /500</small></div>`:`<div class="big">${nz(Y.t[k].s)}<small> /100</small></div>`;
+ $("main").innerHTML=`<div class="bar"><div><h2>${d.n}</h2><span>${sub}</span></div>${big}</div><div style="margin-bottom:10px">${types}${met}</div>`+(noData?`<div class="empty">Sin datos para ${yr}.<br>Pendiente de cargar.</div>`:`<div class="chartbox"><canvas id="ch"></canvas></div>`);
+ if(!noData)draw();
+ bottom(L,S,Y);guide(L,S,Y);
+}
+function draw(){
+ if(chart)chart.destroy();
+ const cs=getComputedStyle(document.documentElement),tx=cs.getPropertyValue("--mu"),gr=cs.getPropertyValue("--bd");
+ const t=type==="area"?"line":type,fill=type==="area"||type==="radar",yr=YEARS[yi],m=metric;
+ const mk=(label,data,col,dash)=>({label,data,borderColor:col,backgroundColor:t==="bar"?col:col+"33",fill,tension:.35,borderWidth:dash?2:3,borderDash:dash?[6,4]:[],pointRadius:5,borderRadius:6,spanGaps:false});
+ const av=(...a)=>{const o=mk(...a);if(t==="bar"){o.type="line";o.backgroundColor="#64748b"}return o};let labels,sets=[];
+ if(si>=0){const S=STUDENTS[si];let sd,pd;
+  if(k==="res"){const Y=S.years[yr];labels=KS.map(i=>T[i].n);sd=KS.map(i=>Y.t[i].s);pd=KS.map(i=>Y.t[i].p)}
+  else{labels=YEARS;sd=YEARS.map(y=>S.years[y]?S.years[y].t[k].s:null);pd=YEARS.map(y=>S.years[y]?S.years[y].t[k].p:null)}
+  sets=[mk("Puntaje (0–100)",sd,T[k].c),mk("Percentil nacional",pd,"#06b6d4")];
+ }else{
+  const ml=m==="s"?"Promedio del curso":"Promedio percentil";
+  if(k==="res"){labels=KS.map(i=>T[i].n);
+   STUDENTS.forEach((s,j)=>{if(s.years[yr])sets.push(mk(short(s.name),KS.map(i=>s.years[yr].t[i][m]),COL[j%COL.length]))});
+   const L=STUDENTS.filter(s=>s.years[yr]);
+   sets.push(av(ml,KS.map(i=>Math.round(avg(L.map(s=>s.years[yr].t[i][m]))*10)/10),"#64748b",true));
+  }else{labels=YEARS;
+   STUDENTS.forEach((s,j)=>sets.push(mk(short(s.name),YEARS.map(y=>s.years[y]?s.years[y].t[k][m]:null),COL[j%COL.length])));
+   sets.push(av(ml,YEARS.map(y=>{const v=STUDENTS.filter(s=>s.years[y]).map(s=>s.years[y].t[k][m]);return v.length?Math.round(avg(v)*10)/10:null}),"#64748b",true));
+  }}
+ chart=new Chart($("ch"),{type:t,data:{labels,datasets:sets},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:tx}}},
+  scales:t==="radar"?{r:{min:0,max:100,ticks:{color:tx,backdropColor:"transparent"},grid:{color:gr},pointLabels:{color:tx}}}:{y:{min:0,max:100,ticks:{color:tx},grid:{color:gr}},x:{ticks:{color:tx},grid:{display:false}}}}});
+}
+function pct(p){return `<div class="track"><div class="fill" style="width:${p}%"></div></div><div class="ticks">${[0,20,40,60,80,100].map(n=>`<span>${n}</span>`).join("")}</div>`}
+function bottom(L,S,Y){
+ const yr=YEARS[yi];
+ const none=`<p class="t">Año ${yr}</p><div style="color:var(--mu)">Sin datos cargados para este año.</div>`;
+ if(!L.length||(si>=0&&!Y)){$("b1").innerHTML=none;$("b2").innerHTML=none;return}
+ const idx=s=>STUDENTS.indexOf(s);
+ const bar=(a,b,w)=>`<div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:14px"><span>${a}</span><b>${b}</b></div><div class="track"><div class="fill" style="width:${w}%"></div></div></div>`;
+ if(si<0){
+  const by=f=>L.slice().sort((a,b)=>(f(b)??-1)-(f(a)??-1));
+  if(k==="res"){
+   const rows=by(s=>s.years[yr].g).map((s,r)=>{const y=s.years[yr];return `<tr data-i="${idx(s)}" style="cursor:pointer" title="Ver detalle"><td>${r+1}. ${short(s.name)}</td>${KS.map(i=>`<td>${nz(y.t[i].s)}</td>`).join("")}<td><b>${y.g}</b></td><td>${y.pg==null?"—":y.pg+"%"}</td></tr>`}).join("");
+   const av=`<tr><td><b>Promedio</b></td>${KS.map(i=>`<td><b>${avg(L.map(s=>s.years[yr].t[i].s)).toFixed(1)}</b></td>`).join("")}<td><b>${Math.round(avg(L.map(s=>s.years[yr].g)))}</b></td><td><b>${Math.round(avg(L.map(s=>s.years[yr].pg)))}%</b></td></tr>`;
+   $("b1").innerHTML=`<p class="t">Matriz de resultados · ${yr}</p><div style="overflow-x:auto"><table><tr><th>Estudiante</th><th>Lec</th><th>Mat</th><th>Soc</th><th>Nat</th><th>Ing</th><th>Global</th><th>Perc.</th></tr>${rows}${av}</table></div><div class="note">Haz clic en un estudiante para ver su detalle.</div>`;
+   $("b2").innerHTML=`<p class="t">Ranking · puntaje global</p>`+by(s=>s.years[yr].g).map(s=>bar(short(s.name),s.years[yr].g,s.years[yr].g/5)).join("");
+  }else{
+   const rows=by(s=>s.years[yr].t[k].s).map((s,r)=>{const y=s.years[yr].t[k];return `<tr data-i="${idx(s)}" style="cursor:pointer" title="Ver detalle"><td>${r+1}. ${short(s.name)}</td><td><b>${nz(y.s)}</b></td><td>${y.p==null?"—":y.p+"%"}</td><td>${nz(y.l)}</td></tr>`}).join("");
+   $("b1").innerHTML=`<p class="t">${T[k].n} · ${yr}</p><table><tr><th>Estudiante</th><th>Puntaje</th><th>Percentil</th><th>Nivel</th></tr>${rows}<tr><td><b>Promedio</b></td><td><b>${avg(L.map(s=>s.years[yr].t[k].s)).toFixed(1)}</b></td><td><b>${Math.round(avg(L.map(s=>s.years[yr].t[k].p)))}%</b></td><td></td></tr></table><div class="note">Haz clic en un estudiante para ver su detalle.</div>`;
+   const lv=T[k].lv;
+   $("b2").innerHTML=`<p class="t">Estudiantes por nivel</p>`+lv.map(l=>{const n=L.filter(s=>s.years[yr].t[k].l===l);return bar("Nivel "+l+(n.length?` <small style="color:var(--mu)">· ${n.map(s=>short(s.name).split(" ")[0]).join(", ")}</small>`:""),n.length,n.length/(L.filter(s=>s.years[yr].t[k].l!=null).length||1)*100)}).join("");
+  }
+  return;
+ }
+ const ref=Y.ref;
+ if(k==="res"){
+  const ing=Y.t.ing.s!=null;let sum=0;
+  const rows=KS.filter(i=>i!=="ing"||ing).map(i=>{const w=ing?T[i].w:1,r=Y.t[i].s*w;sum+=r;return `<tr><td>${T[i].n}</td><td>${Y.t[i].s}</td><td>× ${w}</td><td><b>${r}</b></td></tr>`}).join("");
+  const den=ing?13:4,av=sum/den;
+  $("b1").innerHTML=`<p class="t">Cálculo del puntaje global</p><div style="overflow-x:auto"><table><tr><th>Prueba</th><th>Puntaje</th><th>Pond.</th><th>Resultado</th></tr>${rows}</table></div><div class="note">Suma ${sum} ÷ ${den} = <b>${av.toFixed(2)}</b> → × 5 = <b>${Math.round(av*5)}</b> puntos (global).${ing?"":" Sin Inglés: promedio simple de las 4 pruebas."}</div>`;
+  $("b2").innerHTML=Y.pg!=null?`<p class="t">Percentil global</p><div class="big" style="margin-bottom:10px">${Y.pg}<small> %</small></div>${pct(Y.pg)}<div class="note">Superó al ${Y.pg} % de los estudiantes a nivel nacional.</div>`:`<p class="t">Percentil global · grupo de referencia</p><div class="big" style="margin-bottom:10px">${ref.g}<small> %</small></div>${pct(ref.g)}<div class="note">Superó al ${ref.g} % de los estudiantes con discapacidad que presentaron cuadernillo con ajustes sin inglés.</div>`;
+ }else{
+  const r=Y.t[k];
+  if(r.s==null){const m=`<p class="t">${T[k].n}</p><div style="color:var(--mu)">No presentó esta prueba (cuadernillo con ajustes sin inglés).</div>`;$("b1").innerHTML=m;$("b2").innerHTML=m;return}
+  const lv=T[k].lv,ix=lv.indexOf(r.l);
+  const lad=lv.map((l,i)=>`<div class="col ${i<=ix?"on":""} ${i===ix?"cur":""}">${i===ix?"▼":""}<b>${l}</b>${Array.from({length:i+1},()=>"<i></i>").join("")}</div>`).join("");
+  const sk=SK[k][r.l]||[];
+  $("b1").innerHTML=`<p class="t">Nivel de desempeño · <span class="pill">${r.l}</span></p><div class="lad">${lad}</div><p class="t" style="margin-top:14px">¿Qué habilidades reflejan este nivel?</p><ul class="sk">${sk.map(x=>`<li>${x}</li>`).join("")}</ul>`;
+  $("b2").innerHTML=`<p class="t">Percentil · estudiantes a nivel nacional</p><div class="big" style="margin-bottom:10px">${r.p}<small> %</small></div>${pct(r.p)}<div class="note">Superó al ${r.p} % de los estudiantes del país en ${T[k].n}.</div>`+(ref?`<p class="t" style="margin-top:14px">Percentil · estudiantes con discapacidad</p><div class="big" style="margin-bottom:10px">${ref[k]}<small> %</small></div>${pct(ref[k])}<div class="note">Frente a quienes presentaron cuadernillo con ajustes sin inglés.</div>`:"");
+ }
+}
+render();
+</script></body></html>
