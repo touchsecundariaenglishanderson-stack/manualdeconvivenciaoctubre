@@ -11600,36 +11600,12 @@ Usa datos reales del documento. Si no hay dato usa el ejemplo. Solo JSON.`});
 }
 
 function StatsPage() {
-  const [view, setView] = useState("icfes");
-
   return (
-    <div className="module-page">
-      <div role="tablist" aria-label="Vistas de estadísticas" style={{display:"flex",gap:10,flexWrap:"wrap",marginBottom:16}}>
-        {[
-          {id:"icfes", label:"Estadística ICFES Saber 11°"},
-          {id:"panel", label:"Estadísticas actuales del panel"},
-        ].map(tab => (
-          <button
-            key={tab.id}
-            type="button"
-            role="tab"
-            aria-selected={view===tab.id}
-            onClick={() => setView(tab.id)}
-            className={`pill-tab${view===tab.id?" active":""}`}
-          >
-            {tab.label}
-          </button>
-        ))}
-      </div>
-      <div role="tabpanel" hidden={view!=="icfes"} style={{height:"calc(100vh - 180px)",minHeight:560}}>
-        <iframe
-          title="Estadística ICFES Saber 11° de la I.E. La Amistad"
-          src="/estadistica-icfes.html"
-          style={{display:"block",width:"100%",height:"100%",border:0,borderRadius:12,background:"#eef3f9"}}
-        />
-      </div>
-      {view==="panel" && <StatsDashboardPage />}
-    </div>
+    <iframe
+      title="Estadística ICFES Saber 11° de la I.E. La Amistad"
+      src="/estadistica-icfes.html"
+      style={{position:"fixed",inset:0,width:"100vw",height:"100dvh",border:0,background:"#eef3f9"}}
+    />
   );
 }
 
@@ -11815,22 +11791,22 @@ export default function PanelDocente() {
           style={{
             position:"fixed", top:18, left:18, zIndex:9999,
             display:"flex", alignItems:"center", gap:8,
-            padding:"9px 18px", borderRadius:14,
-            background:"rgba(8,28,80,0.85)",
+            padding:active==="stats"?"7px 10px":"9px 18px", borderRadius:14,
+            background:active==="stats"?"rgba(255,255,255,0.96)":"rgba(8,28,80,0.85)",
             border:"1px solid rgba(100,160,255,0.35)",
             backdropFilter:"blur(16px)",
-            color:"#e8f4fd", fontSize:13, fontWeight:700,
+            color:active==="stats"?"#0f2a4a":"#e8f4fd", fontSize:active==="stats"?11:13, fontWeight:700,
             cursor:"pointer", fontFamily:"'Space Grotesk',sans-serif",
             boxShadow:"0 4px 24px rgba(0,0,0,0.4), 0 0 16px rgba(37,99,255,0.2)",
             transition:"all .22s",
           }}
-          onMouseEnter={e => { e.currentTarget.style.background="rgba(37,99,255,0.5)"; e.currentTarget.style.borderColor="rgba(37,99,255,0.7)"; }}
-          onMouseLeave={e => { e.currentTarget.style.background="rgba(8,28,80,0.85)"; e.currentTarget.style.borderColor="rgba(100,160,255,0.35)"; }}
+          onMouseEnter={e => { e.currentTarget.style.background=active==="stats"?"#fff":"rgba(37,99,255,0.5)"; e.currentTarget.style.borderColor="rgba(37,99,255,0.7)"; }}
+          onMouseLeave={e => { e.currentTarget.style.background=active==="stats"?"rgba(255,255,255,0.96)":"rgba(8,28,80,0.85)"; e.currentTarget.style.borderColor="rgba(100,160,255,0.35)"; }}
         >
           <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
             <path d="M19 12H5M12 5l-7 7 7 7"/>
           </svg>
-          Volver al panel
+          {active==="stats"?"Volver":"Volver al panel"}
         </button>
       )}
 
@@ -11923,13 +11899,13 @@ export default function PanelDocente() {
         </main>
       </div>}
 
-      {/* ── FULLSCREEN MODE (Manual / Calendario) ── */}
+      {/* ── FULLSCREEN MODE (Manual / Calendario / Estadísticas) ── */}
       {isFullscreen && (
         <div style={{
           position:"fixed", inset:0, zIndex:500, overflowY:"auto",
           background:"linear-gradient(135deg,#081c50 0%,#0e2a6e 50%,#091f58 100%)"
         }}>
-          <div style={{ paddingTop:68 }}>
+          <div style={{ paddingTop:active==="stats"?0:68 }}>
             {pages[active]}
           </div>
         </div>

@@ -15,7 +15,7 @@ export const NAV_ITEMS = [
   { id: "logout", label: "Cerrar sesión", icon: "logout", badge: null },
 ];
 
-export const FULLSCREEN_MODULES = ["conviv", "calendar", "planner"];
+export const FULLSCREEN_MODULES = ["conviv", "calendar", "planner", "stats"];
 
 export const PAGE_TITLES = {
   home: "Inicio",
