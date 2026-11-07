@@ -1,9 +1,11 @@
 export const STORAGE_KEY = "la_amistad_v26";
+export const MANUAL_CONTENT_VERSION = 4;
 
 export const TIPO_META = {
   "1": { label: "Tipo I", color: "#166534", bg: "#dcfce7", border: "#86efac" },
   "2": { label: "Tipo II", color: "#92400e", bg: "#fef3c7", border: "#fcd34d" },
   "3": { label: "Tipo III", color: "#991b1b", bg: "#fee2e2", border: "#fca5a5" },
+  contextual: { label: "Clasificación según los hechos", color: "#1e40af", bg: "#dbeafe", border: "#93c5fd" },
 };
 
 export const TABS = [

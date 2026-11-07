@@ -7,8 +7,9 @@ import { CHART_BARS, GAME_DOC_BTNS, LEADERBOARD } from "../features/games/data.j
 import { STORAGE_KEY_JR, STUDENT_GAME_THEME, TEACHER_PASSWORD_JR } from "../features/games/studentConfig.js";
 import { DIAS_SEMANA, MES_COLORES, PERIODO_STYLE, TAGS, construirGrilla, esFondoOscuro, matizClaro } from "../features/calendar/theme.js";
 import { ASIGN, CELL_STYLE, COLS, crearSemanas, GRADOS, INST, MONTHS, P, PERIOD_BY_MONTH, PERIOD_COLORS, SEMANAS_POR_MES } from "../features/planner/theme.js";
-import { MANUAL_STYLES, STORAGE_KEY, TABS, TIPO_META } from "../features/manual/config.js";
+import { MANUAL_CONTENT_VERSION, MANUAL_STYLES, STORAGE_KEY, TABS, TIPO_META } from "../features/manual/config.js";
 import { loadManualData, saveManualData } from "../features/manual/storage.js";
+import { NORMAS_BASE, NORMAS_VERSION, RUTA_DEBIDO_PROCESO } from "../features/manual/normativa.js";
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // MANUAL DE CONVIVENCIA — I.E. La Amistad · San José de Pare
@@ -74,7 +75,7 @@ La Institución Educativa, ubicada en un contexto rural, reconoce la importancia
     situaciones: [
       {
         tipo: "TIPO 1", color: "#166534", bg: "#dcfce7", border: "#86efac",
-        descripcion: "Conflictos manejados inadecuadamente y situaciones esporádicas que inciden negativamente en el clima escolar. No generan daños al cuerpo o a la salud física o mental.",
+        descripcion: "Conflictos manejados inadecuadamente y situaciones esporádicas que inciden negativamente en el clima escolar, sin generar daño al cuerpo o a la salud física o mental.",
         protocolos: [
           "Reunir inmediatamente a las partes involucradas en el conflicto y mediar de manera pedagógica para que expongan sus puntos de vista y busquen la reparación de los daños causados, el restablecimiento de los derechos y la reconciliación dentro de un clima de relaciones constructivas en el establecimiento educativo.",
           "Fijar la forma de solución de manera imparcial, equitativa y justa, encaminada a buscar la reparación de los daños causados, el restablecimiento de los derechos y la reconciliación dentro de un clima de relaciones constructivas en el grupo involucrado o en el establecimiento educativo. De esta actuación se dejará constancia.",
@@ -99,7 +100,7 @@ La Institución Educativa, ubicada en un contexto rural, reconoce la importancia
       },
       {
         tipo: "TIPO 3", color: "#991b1b", bg: "#fee2e2", border: "#fca5a5",
-        descripcion: "Situaciones que sean constitutivas de presuntos delitos contra la libertad, integridad y formación sexual.",
+        descripcion: "Situaciones que puedan constituir presuntos delitos contra la libertad, integridad y formación sexual, o cualquier otro delito previsto en la ley penal. La clasificación depende de los hechos; no supone que una persona sea responsable.",
         protocolos: [
           "En casos de daño al cuerpo o a la salud, garantizar la atención inmediata en salud física y mental de los involucrados, mediante la remisión a las entidades competentes, actuación de la cual se dejará constancia.",
           "Informar de manera inmediata a los padres, madres o acudientes de todos los estudiantes involucrados, actuación de la cual se dejará constancia.",
@@ -121,36 +122,36 @@ La Institución Educativa, ubicada en un contexto rural, reconoce la importancia
   },
 
   justicia_restaurativa: {
-    definicion: `El código de procedimiento penal colombiano en su artículo 518 define la Justicia Restaurativa como un programa cuyo resultado restaurativo conduzca al acuerdo encaminado a atender las necesidades y responsabilidades individuales y colectivas de las partes y a lograr la restauración de la víctima y reintegración del infractor en la comunidad, buscando la reparación, la restitución y la conciliación, que conlleve a una convivencia pacífica.
+    definicion: `El artículo 518 del Código de Procedimiento Penal define la justicia restaurativa como un programa cuyo resultado puede conducir a un acuerdo para atender las necesidades y responsabilidades individuales y colectivas, reparar el daño y favorecer la reintegración. En el ámbito escolar, su uso debe ser adecuado al caso, respetar los derechos de todas las personas y no reemplazar la Ruta de Atención Integral ni el debido proceso.
 
-La Justicia Restaurativa motiva a quienes produjeron el daño a reconocer el impacto de lo que hicieron y les da la oportunidad de repararlo. Ofrece a quienes sufrieron el daño la oportunidad de que se les reconozca su pérdida de derechos y se les restituyan con dignidad y respeto. Se caracteriza por centrarse en el futuro reparador más que en el pasado y en el castigo, la garantía de la no repetición, y la implementación de estrategias de participación de la comunidad como el diálogo directo, la cultura del perdón, la reparación del daño causado y la reconciliación.
+La justicia restaurativa puede ofrecer a quienes hayan causado un daño la oportunidad de reconocerlo y repararlo, y a quienes lo sufrieron, ser escuchados y recibir reparación con dignidad y respeto. La participación y los acuerdos no se presumen ni se imponen; deben ser seguros, apropiados y compatibles con las medidas de protección y las garantías procesales.
 
 Según el artículo 43 de la Ley 1098 de 2006, las instituciones educativas tienen como obligación ética fundamental garantizar a los niños, niñas y adolescentes el pleno respeto a su dignidad, vida, integridad física y bienestar dentro de la convivencia escolar.`,
     principios: [
       { titulo: "Reparación a la o las víctimas", descripcion: "La Institución Educativa tiene la obligación de emprender acciones de formación pedagógica encaminadas a fortalecer en los estudiantes la toma de conciencia que les haga capaces de entender la necesidad de responsabilizarse frente a sus actitudes y acciones, pudiendo reconocer el daño causado a una víctima y obligándose a resarcirlos de manera oportuna, plena y efectiva." },
       { titulo: "Restitución y restablecimiento de los derechos", descripcion: "Consecutiva a la reparación, restituir los derechos violentados a la víctima, volviéndoles a su estado inicial (hasta donde sea posible) y minimizando al máximo la injusticia cometida, permite recuperar la dignidad, la integridad y la capacidad para disfrutar efectivamente los derechos que le han sido transgredidos (Decreto 1965 de 2013, artículo 39)." },
-      { titulo: "Verdad, Justicia, Reparación y No Repetición (VJRNR)", descripcion: "Cuando se presenten conflictos asociados al incumplimiento de Condiciones y/o Situaciones Tipo I, II o III, estos deberán ser atendidos a través de los mecanismos de justicia restaurativa y la conciliación en equidad, aplicando los principios de Verdad, Justicia, Reparación y No Repetición." },
+      { titulo: "Verdad, justicia, reparación y no repetición", descripcion: "Cuando resulte pertinente y seguro, pueden proponerse medidas restaurativas respetuosas de los derechos de las partes. No son obligatorias, no sustituyen los protocolos de atención ni el debido proceso y no deben imponerse en situaciones que puedan generar revictimización." },
     ],
     caracteristicas: [
       "Cada presunto incumplimiento de Condición o Situación Tipo I, II o III se convierte en un instrumento pedagógico, formativo y en una oportunidad de aprendizaje para todos los involucrados.",
-      "El daño cometido involucra y afecta a todas las personas afectadas, no solo a la víctima. Incluir al ofensor le permitirá reflexionar, mejorando sus actitudes y sensibilizando sobre la importancia de convivir pacíficamente.",
-      "El agredido tiene la oportunidad de recuperar su dignidad por el restablecimiento de sus derechos violentados y el daño causado, bien sea de forma simbólica o física.",
-      "El presunto agresor tiene la obligación de asumir su responsabilidad, participando y colaborando con el buen desarrollo del debido proceso, actuando en verdad y justicia, mostrando su intención de reparar el daño causado.",
-      "Se propician encuentros entre agredido y agresor con el fin de reparar los daños, recuperar la confianza y restaurar las relaciones de los afectados.",
-      "En toda Situación Tipo I, II o III existe un responsable, para quien se generan obligaciones que motivan la acción reparadora y el compromiso de no repetición.",
+      "El proceso puede considerar las necesidades de todas las personas afectadas, sin imponer encuentros ni participación a quien no los acepte libremente.",
+      "La persona afectada puede recibir apoyo y reparación adecuada, de acuerdo con sus necesidades y sin presión para participar en encuentros restaurativos.",
+      "La responsabilidad no se presume. Si se establece conforme al procedimiento aplicable, pueden considerarse acciones pedagógicas o restaurativas adecuadas al caso, sin exigir confesiones ni renunciar a la defensa.",
+      "Los encuentros entre personas involucradas solo se consideran cuando son seguros, pertinentes y aceptados libremente; nunca deben usarse para presionar a una persona afectada.",
+      "Una situación Tipo I, II o III no determina por sí sola quién es responsable ni obliga a realizar una acción restaurativa.",
       "El acuerdo mutuo de no repetición es el compromiso que propende por la prevención de futuras situaciones, permitiendo el mejoramiento consciente y afirmando ambientes escolares donde prime el bienestar y la armonía.",
       "Toda Situación o incumplimiento de condiciones constituye una oportunidad de PREVENIR conflictos futuros, por su intervención y atención adecuada.",
-      "La atención adecuada de Situaciones Tipo I, II o III, respetando los parámetros establecidos en el Manual de Convivencia (conducto regular y debido proceso), crea responsabilidades y obligaciones entre las partes, facilitando la reconciliación.",
+      "La atención de cada situación debe respetar el Manual, la protección de derechos y el debido proceso; no presupone responsabilidades ni obliga a la reconciliación.",
       "Es recomendable, al atender Situaciones Tipo I y II, contar con la presencia de mediadores que faciliten entre las partes involucradas la toma de decisiones y responsabilidades.",
-      "El proceso se centra en subsanar y restituir lo que se haya afectado: ¿Qué se necesita para sanar, recuperarse y recobrar un sentido de seguridad? La persona agredida puede necesitar información, expresar su ira, o necesitar la reparación de los daños. El agresor necesita sanar, liberarse de sentimientos de culpa y tener la oportunidad de reparar.",
+      "El proceso se centra en atender las necesidades de recuperación y seguridad de las personas afectadas. No se asignan roles ni responsabilidades antes de concluir el procedimiento correspondiente.",
     ],
     pasos: [
-      { titulo: "1. Reconocer el error", descripcion: "Hacerse responsable de los hechos y los conflictos generados, asumiendo las consecuencias de sus acciones." },
-      { titulo: "2. Manifestar arrepentimiento", descripcion: "Expresado en acciones, actitudes, gestos o palabras que muestran la intención de cambio positivo por los daños causados y el compromiso de no repetición." },
-      { titulo: "3. Ofrecer disculpas — Pedir perdón", descripcion: "Puede ser en presencia del mediador. Permite al agresor descargar su sentimiento de culpa y al agredido ser reconocido en la restauración de su derecho vulnerado. Es importante generar un ambiente que facilite la aceptación entre las partes, propiciando confianza y afecto." },
-      { titulo: "4. Generar una acción reparadora", descripcion: "El estudiante agresor propone una acción reparadora acorde con las expectativas del estudiante agredido. Si el agresor no la motiva, el mediador apoya la conciliación y propone alternativas entre los implicados. El directivo o docente puede colaborar en la búsqueda reparadora del conflicto." },
-      { titulo: "5. Lograr la reconciliación", descripcion: "El objetivo principal radica en lograr que tanto agresor como agredido y la comunidad afectada lleguen a un entendimiento que facilite la reconciliación. Este acto puede terminar con un saludo, estrechar de manos, un abrazo o palabras afectuosas y conciliadoras, con el propósito de establecer compromisos para convivir pacíficamente." },
-      { titulo: "6. Establecer compromiso de no repetición", descripcion: "Se manifiesta el compromiso expreso de no repetición, con la intención real de cambio, mejorando actitudes y acciones hacia el futuro." },
+      { titulo: "1. Identificar necesidades y hechos", descripcion: "Escuchar a las personas involucradas sin anticipar responsabilidades y determinar si un abordaje restaurativo es apropiado y seguro." },
+      { titulo: "2. Explorar la disposición", descripcion: "Verificar que la participación sea libre e informada. Cualquier persona puede no participar sin que ello se interprete como admisión de responsabilidad." },
+      { titulo: "3. Acordar si procede", descripcion: "Las disculpas solo se consideran si son voluntarias y adecuadas; no se exige contacto directo ni perdón." },
+      { titulo: "4. Definir una reparación adecuada", descripcion: "Si existe acuerdo libre, establecer acciones proporcionales que protejan la dignidad, la seguridad y los derechos de las personas involucradas." },
+      { titulo: "5. Evitar la revictimización", descripcion: "No promover encuentros o reconciliaciones cuando puedan causar daño, intimidación o presión. Mantener activos los apoyos y medidas de protección necesarios." },
+      { titulo: "6. Hacer seguimiento", descripcion: "Verificar los acuerdos voluntarios y la no repetición, sin sustituir el debido proceso ni los reportes que exija la normativa." },
     ],
     tipos_accion: [
       { titulo: "Acciones Disuasivas", descripcion: "Son aquellas que permiten con razones, exhortaciones y reflexiones objetivas orales o escritas inducir a los estudiantes a un cambio de actitud hacia lo positivo. Generalmente se asocian a Condiciones y Situaciones Tipo I y son atendidas por los docentes de área y directores de grupo." },
@@ -171,7 +172,7 @@ Según el artículo 43 de la Ley 1098 de 2006, las instituciones educativas tien
   debido_proceso: [
     { titulo: "Iniciación", descripcion: "Es la etapa previa o indagación preliminar, cuyo objeto es establecer si existen méritos para iniciar el proceso disciplinario. Se entiende que antes de iniciado este proceso, el colegio ha ejercido su papel de formador mediante el trabajo pedagógico con el estudiante, debidamente documentado a través de actas u otros registros derivados de las acciones llevadas a cabo por la orientación escolar, el comité de convivencia, las comisiones de evaluación y promoción y demás instancias institucionales." },
     { titulo: "Apertura del proceso", descripcion: "Cuando exista la presunta conducta infractora e indicios que comprometan al estudiante, la instancia competente le comunica por escrito, con los fundamentos de hecho y de derecho, las conductas violatorias al Manual de Convivencia, las pruebas consideradas pertinentes y los plazos para presentar los descargos. La apertura del proceso se notificará al estudiante y/o al padre de familia o su cuidador cuando se trate de un menor de edad." },
-    { titulo: "Etapa probatoria", descripcion: "Las instancias competentes analizan el caso mediante el recurso de la prueba. El estudiante involucrado hace uso de la defensa, acompañado por sus padres o representantes legales, es oído en descargos y puede solicitar las pruebas que considere convenientes. También puede aceptar los cargos tal como han sido formulados. Esta etapa puede durar una o más sesiones, dependiendo de la complejidad del caso. De lo actuado se deja la correspondiente acta." },
+    { titulo: "Etapa probatoria", descripcion: "Las instancias competentes valoran las pruebas y garantizan que el estudiante, con el acompañamiento previsto en el Manual, pueda dar su versión, aportar elementos y controvertir los que se presenten. Cualquier reconocimiento de hechos debe ser libre y no implica renunciar a la defensa. De lo actuado se deja constancia." },
     { titulo: "Fallo", descripcion: "Luego de la etapa probatoria, la instancia competente toma la decisión, la cual puede ser exoneración o sanción. Si se exonera, se archiva el caso. Si se aplica sanción, esta debe estar tipificada en el Manual de Convivencia y notificársele al estudiante o al padre de familia mediante resolución rectoral, indicándole los recursos de ley a que tiene derecho. De lo actuado se deja el acta correspondiente." },
     { titulo: "Recursos", descripcion: "El estudiante tiene derecho a interponer los recursos de ley: el de reposición ante la instancia que le aplicó la sanción y el de apelación ante una instancia superior. La instancia competente puede exonerar, mantener la sanción o disminuirla, dependiendo de los argumentos presentados; en todo caso el recurso no podrá agravar la sanción. De lo actuado se deja constancia en acta." },
     { titulo: "Aplicación de la sanción o medida pedagógica", descripcion: "Solo después de resueltos los recursos se aplica la sanción al estudiante, por la instancia competente definida en el Manual de Convivencia. Aunque se trata de un proceso disciplinario, es importante hacer notar al estudiante que la sanción también constituye una acción formativa de la institución educativa." },
@@ -199,25 +200,25 @@ Según el artículo 43 de la Ley 1098 de 2006, las instituciones educativas tien
     },
     {
       id: 2, tipo: "II", color: "#92400e", bg: "#fef3c7", border: "#fcd34d",
-      nombre: "Situaciones Tipo II — Agresión escolar, acoso y ciberacoso que no son delitos",
-      descripcion: "Son situaciones de agresión escolar, acoso escolar (bullying) y ciberacoso que no constituyen un delito, pero que generan daño al cuerpo o a la salud física o mental, o que afectan de manera significativa la convivencia escolar. Estas situaciones son recurrentes o sistemáticas y requieren la intervención del Comité Escolar de Convivencia y la implementación de medidas de protección y acompañamiento.",
+      nombre: "Situaciones Tipo II — Agresión escolar, acoso y ciberacoso",
+      descripcion: "Son situaciones que no puedan constituir un presunto delito y que se presenten de manera repetida o sistemática, o causen daño al cuerpo o a la salud física o mental sin generar incapacidad. Cada caso debe clasificarse con base en los hechos y atenderse conforme al protocolo correspondiente.",
       tipologias: [
         "Bullying / Acoso escolar: conducta agresiva, intencional y repetida ejercida por uno o varios estudiantes contra otro, que causa sufrimiento físico, psicológico o social. Se manifiesta mediante golpes, insultos, exclusión, humillaciones o apodos ofensivos reiterados dentro o fuera de la institución.",
         "Cyberbullying / Ciberacoso recurrente: uso reiterado de medios digitales (redes sociales, grupos de WhatsApp, plataformas digitales) para acosar, humillar, excluir o dañar psicológicamente a un miembro de la comunidad educativa. Incluye difusión de rumores, suplantación de identidad, exclusión deliberada de grupos y comentarios ofensivos que causan daño psicológico sin constituir un delito penal.",
         "Troleo sistemático: patrón recurrente de publicación de contenidos provocadores, burlones o perturbadores en espacios digitales con el fin deliberado de molestar, generar conflicto emocional o desestabilizar a una persona. A diferencia del troleo leve, es sistemático y causa daño psicológico medible.",
-        "Amenaza digital: uso de medios digitales (mensajes, publicaciones, audios, videos) para intimidar, amedrentar o generar miedo en un miembro de la comunidad educativa, sin que la amenaza configure un delito penal grave. Incluye mensajes amenazantes en chats privados o grupos.",
-        "Violencia escolar: agresiones físicas sin lesiones graves, intimidación constante o comportamientos coercitivos reiterados que afectan la convivencia escolar sin constituir delito penal. Incluye empujones, forcejeos y hostigamiento sistemático.",
+        "Amenaza digital: uso de medios digitales para intimidar o generar miedo. Valorar los hechos y activar las medidas de protección; la clasificación depende de los criterios de la Ruta y de si pueden constituir un presunto delito.",
+        "Violencia escolar: agresiones físicas, intimidación o comportamientos coercitivos. Valorar sus efectos, repetición y contexto; la clasificación no depende únicamente de la gravedad aparente de una lesión.",
         "Violencia digital sexual (no constitutiva de delito): compartir, comentar o reenviar contenido de carácter sexual (imágenes editadas, memes sexuales, insinuaciones) sobre un miembro de la comunidad educativa sin su consentimiento, cuando dicho contenido no configura aún un delito pero causa daño a la dignidad e imagen de la persona.",
         "Difusión de imágenes sin consentimiento (no constitutiva de delito): compartir fotografías, videos o pantallazos de una persona en situaciones comprometedoras, privadas o que la exponen al ridículo, sin su autorización, causando daño a su imagen e integridad emocional.",
         "Agresión verbal reiterada o grave: insultos, calumnias, difamación, amenazas leves o lenguaje ofensivo de forma repetitiva o con intención de denigrar a un miembro del personal, ya sea de forma presencial o a través de medios digitales (redes sociales, grupos de WhatsApp).",
-        "Agresión física leve: empujones, forcejeos, lanzamiento de objetos sin intención de causar daño grave, o cualquier contacto físico no consentido que genere incomodidad o altere la integridad de un miembro del personal.",
+        "Agresión física: valorar los hechos, sus efectos y el contexto. Activar atención y protección cuando corresponda; la clasificación no depende únicamente de la intención atribuida.",
         "Vandalismo o daño a bienes: dañar intencionalmente objetos personales de docentes, ecónomas, personal de aseo o administrativos, o infraestructura de la institución.",
       ],
       acciones: [
         { titulo: "Activación del Comité Escolar de Convivencia", descripcion: "El caso es remitido al Comité, que realiza una investigación exhaustiva, garantizando el debido proceso y el derecho a la defensa de todas las partes." },
         { titulo: "Medidas de Protección Inmediata", descripcion: "Se implementan acciones para proteger a la víctima y prevenir la continuidad de la agresión, como el acompañamiento permanente, la reubicación temporal o la restricción de contacto entre los involucrados." },
-        { titulo: "Plan de Acompañamiento Psicosocial", descripcion: "La institución, a través del orientador escolar o profesional de apoyo, brinda acompañamiento psicológico y emocional a la víctima y al agresor, buscando comprender las causas del comportamiento y desarrollar habilidades para la resolución pacífica de conflictos." },
-        { titulo: "Acuerdos de Reparación y No Repetición", descripcion: "Se establecen acuerdos restaurativos que incluyen acciones concretas de reparación del daño causado a la víctima y a la comunidad escolar. Estas acciones pueden ser: realización de un proyecto de servicio a la comunidad (ej. embellecimiento de la sede, apoyo en la biblioteca), participación en talleres de sensibilización sobre el impacto del bullying o ciberacoso, o la creación de material pedagógico para prevenir futuras situaciones." },
+        { titulo: "Plan de Acompañamiento Psicosocial", descripcion: "La institución ofrece acompañamiento a las personas involucradas, con atención diferenciada según sus necesidades y sin presumir responsabilidades." },
+        { titulo: "Acciones restaurativas, cuando procedan", descripcion: "Si son seguras, pertinentes y aceptadas libremente, pueden proponerse acciones proporcionales para reparar daños y prevenir su repetición. No presuponer responsabilidad, exigir disculpas o contacto directo, ni reemplazar las medidas de protección y el debido proceso." },
         { titulo: "Escuela de Padres y Cuidadores", descripcion: "Se involucra a las familias en el proceso, brindándoles herramientas para la supervisión tecnológica, el fomento de la comunicación asertiva y el apoyo emocional a sus hijos." },
         { titulo: "Taller 'Ciberconvivencia Responsable'", descripcion: "Un taller interactivo para estudiantes, docentes y padres sobre el uso ético y seguro de las tecnologías, la prevención del ciberacoso y la importancia de reportar situaciones de riesgo." },
         { titulo: "Seguimiento", descripcion: "El Comité de Convivencia realiza un seguimiento periódico de los acuerdos y las medidas implementadas, evaluando su efectividad y realizando ajustes si es necesario." },
@@ -229,10 +230,10 @@ Según el artículo 43 de la Ley 1098 de 2006, las instituciones educativas tien
       descripcion: "Son situaciones que constituyen presuntos delitos contra la libertad, integridad y formación sexual, o cualquier otro delito establecido en la ley penal colombiana, y que afectan a uno o varios miembros de la comunidad educativa. Estas situaciones requieren la activación inmediata de las rutas externas de protección y justicia, además de las acciones internas de la institución.",
       tipologias: [
         "Violencia sexual: acceso carnal violento, acceso carnal en persona puesta en incapacidad de resistir, acceso carnal abusivo con menor de 14 años, actos sexuales con menor de 14 años, u otras conductas sexuales coercitivas tipificadas en el Código Penal colombiano (Ley 599 de 2000, Arts. 208 y 209).",
-        "Grooming: proceso deliberado mediante el cual un adulto u otro menor establece una relación de confianza con un niño, niña o adolescente a través de medios digitales (redes sociales, WhatsApp, videojuegos en línea) con el fin de manipularle emocionalmente para obtener imágenes de contenido sexual o facilitar un encuentro para abuso sexual. Constituye un delito penal.",
-        "Sextorsión: acto de coaccionar, amenazar o chantajear a una persona con difundir imágenes, videos o información de carácter íntimo o sexual, reales o manipulados, a cambio de dinero, favores sexuales u otras acciones. Se clasifica como extorsión agravada y delito informático (Ley 1273 de 2009).",
-        "Difusión de pornografía infantil: producción, distribución, tenencia o visualización de material de abuso sexual de menores de edad por cualquier medio digital o físico (Ley 679 de 2001).",
-        "Difusión de imágenes íntimas constitutiva de delito: compartir, publicar o distribuir sin consentimiento fotografías, videos o material audiovisual de carácter íntimo o sexual de una persona, causando perjuicio a su honra, intimidad o buen nombre (Art. 229 C del Código Penal, adicionado por la Ley 2080 de 2021).",
+        "Grooming: acercamiento o manipulación de una persona menor de edad por medios digitales con fines de explotación o abuso sexual. Proteger a la persona y activar las rutas pertinentes; la calificación penal corresponde a las autoridades competentes.",
+        "Sextorsión: coaccionar, amenazar o chantajear a una persona con difundir imágenes, videos o información íntima o sexual. Proteger a la persona afectada, evitar la difusión y activar las rutas pertinentes; la calificación penal depende de los hechos y corresponde a las autoridades competentes.",
+        "Material de abuso sexual de niñas, niños o adolescentes: proteger de inmediato a las personas afectadas y activar las rutas competentes. No descargar, copiar ni volver a difundir el material; su calificación jurídica corresponde a las autoridades.",
+        "Difusión no consentida de imágenes íntimas: compartir o publicar contenido íntimo sin autorización puede afectar derechos y requerir medidas de protección. La calificación jurídica depende de los hechos y corresponde a las autoridades competentes; no debe atribuirse automáticamente un delito por esta descripción.",
         "Delitos cibernéticos: conductas tipificadas en la Ley 1273 de 2009, incluyendo acceso abusivo a sistemas informáticos, interceptación de datos, daño informático, violación de datos personales, suplantación de identidad con fines delictivos y hurto de información personal o financiera.",
         "Violencia digital sexual grave: producción, distribución o uso de contenido sexual digital para coaccionar, extorsionar o agredir sexualmente a un miembro de la comunidad educativa, cuando dicha conducta configura un delito penal.",
         "Amenazas graves: amenazas explícitas a través de cualquier medio (presencial o digital) que pongan en riesgo real la vida o integridad física de un miembro de la comunidad educativa y que constituyan un delito penal.",
@@ -243,7 +244,7 @@ Según el artículo 43 de la Ley 1098 de 2006, las instituciones educativas tien
         { titulo: "Denuncia Inmediata", descripcion: "El rector o director de la institución, o cualquier miembro de la comunidad educativa que tenga conocimiento de la situación, debe denunciar de manera inmediata ante la Fiscalía General de la Nación, la Policía de Infancia y Adolescencia, o la Comisaría de Familia. En caso de violencia sexual, la denuncia es obligatoria." },
         { titulo: "Reporte a Entidades de Protección", descripcion: "Se debe reportar la situación al Instituto Colombiano de Bienestar Familiar (ICBF) para la activación de las medidas de protección y restablecimiento de derechos del menor." },
         { titulo: "Protección Integral a la Víctima", descripcion: "La institución debe garantizar la protección física, emocional, académica y digital de la víctima, evitando la revictimización. Esto incluye: flexibilización académica, acompañamiento psicológico, protección de la identidad y monitoreo permanente de su bienestar." },
-        { titulo: "Separación Preventiva", descripcion: "Si el presunto agresor es un docente o personal de la institución, se debe proceder a su separación preventiva del cargo, de acuerdo con la normatividad vigente, mientras se adelantan las investigaciones correspondientes." },
+        { titulo: "Medidas de protección", descripcion: "Adoptar las medidas que correspondan dentro de las competencias institucionales para proteger a las personas involucradas y evitar nuevos daños. No imponer una separación del cargo como sanción automática; cualquier medida laboral o disciplinaria debe decidirse por la autoridad competente y conforme a la normativa aplicable." },
         { titulo: "Acompañamiento Psicosocial y Jurídico", descripcion: "La institución debe facilitar el acceso a acompañamiento psicológico y jurídico especializado para la víctima y su familia, en coordinación con las entidades competentes." },
         { titulo: "Restauración del Entorno Escolar", descripcion: "Una vez abordada la situación legal y de protección, la institución debe implementar acciones restaurativas para la comunidad escolar, buscando reparar el tejido social afectado, generar confianza y fortalecer los mecanismos de prevención. Esto puede incluir círculos de diálogo con la comunidad, campañas de sensibilización sobre la prevención de la violencia sexual y digital, y la promoción de un ambiente seguro y protector." },
         { titulo: "Seguimiento", descripcion: "Se realiza un seguimiento continuo del caso en coordinación con las autoridades competentes y las entidades de protección, garantizando que las medidas implementadas sean efectivas y que la víctima reciba el apoyo necesario." },
@@ -377,38 +378,7 @@ Según el artículo 43 de la Ley 1098 de 2006, las instituciones educativas tien
   ],
 
   // ══ 5. MARCO NORMATIVO ═══════════════════════════════════════════════════
-  normas: [
-    { id: 1, nombre: "Constitución Política de Colombia 1991", descripcion: "Arts. 7, 13, 15, 16, 20, 23, 29, 43, 44, 45, 47, 67, 68, 70, 71 y 95. Base del sistema de derechos fundamentales que ampara a toda la comunidad educativa.", url: "" },
-    { id: 2, nombre: "Ley 115 de 1994 — Ley General de Educación", descripcion: "Establece las normas generales para regular el Servicio Público de la Educación. Base del PEI y el Manual de Convivencia.", url: "" },
-    { id: 3, nombre: "Decreto 1860 de 1994", descripcion: "Reglamenta la Ley 115 en los aspectos pedagógicos, curriculares y organizacionales. Establece el Manual de Convivencia como herramienta institucional.", url: "" },
-    { id: 4, nombre: "Ley 1098 de 2006 — Código de Infancia y Adolescencia", descripcion: "Garantiza los derechos de los niños y adolescentes, incluyendo su derecho a un ambiente escolar seguro. Art. 43: obligación ética de las instituciones educativas en convivencia.", url: "" },
-    { id: 5, nombre: "Ley 1620 de 2013 — Convivencia Escolar", descripcion: "Sistema Nacional de Convivencia Escolar y Formación para los Derechos Humanos, la Educación para la Sexualidad y la Prevención y Mitigación de la Violencia Escolar.", url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=52287" },
-    { id: 6, nombre: "Decreto 1965 de 2013", descripcion: "Reglamentario de la Ley 1620. Define la Ruta de Atención Integral para la Convivencia Escolar (RAI): Promoción, Prevención, Atención y Seguimiento.", url: "" },
-    { id: 7, nombre: "Ley 906 de 2004 — Código de Procedimiento Penal", descripcion: "Define la mediación como mecanismo de Justicia Restaurativa (Art. 518). Base del enfoque restaurativo institucional.", url: "" },
-    { id: 8, nombre: "Resolución No. 383 de 2022 — Fiscalía General", descripcion: "Adoptó el Manual de la Justicia Restaurativa y Mediación, que orienta los procesos restaurativos en la institución.", url: "" },
-    { id: 9, nombre: "Ley 1273 de 2009 — Delitos informáticos", descripcion: "Modifica el Código Penal: protección de la información y los datos. Regula ciberacoso, suplantación de identidad, daños informáticos, hurto de información y sextorsión.", url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=34492" },
-    { id: 10, nombre: "Ley 527 de 1999 — MINTIC", descripcion: "Define y reglamenta el acceso y uso de los mensajes de datos, el comercio electrónico y las firmas digitales.", url: "" },
-    { id: 11, nombre: "Ley 1581 de 2012 — Protección de datos personales", descripcion: "Disposiciones generales para la protección de datos personales. Decreto reglamentario 1377 de 2013.", url: "" },
-    { id: 12, nombre: "Ley 679 de 2001", descripcion: "Prevención de la explotación sexual y pornografía infantil.", url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=18309" },
-    { id: 13, nombre: "Ley 2170 de 2021", descripcion: "Establece parámetros para el uso responsable de dispositivos móviles en instituciones educativas.", url: "" },
-    { id: 14, nombre: "Ley 1482 de 2011 — Antidiscriminación", descripcion: "Garantiza la protección de los derechos de personas o grupos vulnerados a través de actos de racismo o discriminación.", url: "" },
-    { id: 15, nombre: "Ley 2025 de 2020 — Escuela de Padres", descripcion: "Regula la participación y corresponsabilidad de los padres de familia en el proceso educativo.", url: "" },
-    { id: 16, nombre: "Decreto 1421 de 2017 — Educación Inclusiva", descripcion: "Reglamenta en el marco de la educación inclusiva la atención educativa a la población con discapacidad.", url: "" },
-    { id: 17, nombre: "Decreto 1844 de 2018 — SPA en entornos escolares", descripcion: "Prohíbe poseer, tener, entregar, distribuir o comercializar drogas o sustancias prohibidas en entornos escolares.", url: "" },
-    { id: 18, nombre: "Ley 30 de 1986 y Ley 110 de 1988 — Prevención drogadicción", descripcion: "Buscan la prevención de la drogadicción y establecen el Estatuto Nacional de Estupefacientes.", url: "" },
-    { id: 19, nombre: "Resolución 03353 de 1993 — Educación sexual", descripcion: "Obliga a las instituciones educativas a implementar el Proyecto de Educación Sexual.", url: "" },
-    { id: 20, nombre: "Decreto 1290 de 2009", descripcion: "Establece las directrices para crear el Sistema Institucional de Evaluación de los Estudiantes (SIEE).", url: "" },
-    { id: 21, nombre: "Ley 2383 de 2024", descripcion: "Promueve la educación socioemocional en las instituciones educativas colombianas.", url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=261956" },
-    { id: 22, nombre: "Ley 2503 de 2025", descripcion: "Crea la Cátedra de Educación Emocional de carácter obligatorio en el sistema educativo colombiano.", url: "https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1.jsp?i=188333" },
-    { id: 23, nombre: "Código Penal — Ley 599 de 2000 (Arts. 208, 209)", descripcion: "Define y penaliza los delitos de violencia sexual, actos sexuales con menores de 14 años y otras conductas punibles.", url: "" },
-    { id: 24, nombre: "Ley 1335 de 2009 — Espacios libres de humo", descripcion: "Prohíbe el consumo de cigarrillo y tabaco en espacios cerrados, instituciones educativas y lugares públicos. Protege a los no fumadores y a los menores de edad.", url: "" },
-    { id: 25, nombre: "Ley 2354 de 2024 — Regulación vapeadores y tabaco", descripcion: "Regula el consumo, venta y publicidad de cigarrillos electrónicos, vapeadores (SEAN/SSSN) y productos de tabaco. Art. 34: prohíbe expresamente su consumo, posesión, distribución y venta en instituciones educativas y sus alrededores. Prohíbe la venta a menores de 18 años.", url: "" },
-    { id: 26, nombre: "Sentencias Corte Constitucional — Libre desarrollo de la personalidad", descripcion: "T-839/2007: falló a favor de estudiante sancionado por llevar aretes y maquillaje. T-789/2013: los tatuajes no pueden ser motivo de restricción. T-832/2011: derecho a portar elementos de identidad religiosa y de género. Ley 2025 aprobada en 2025: ningún colegio puede sancionar a estudiantes por piercings, tintes, maquillaje o accesorios corporales.", url: "" },
-    { id: 27, nombre: "Manual de Convivencia — Acuerdo N°04 (22/11/2024)", descripcion: "Manual de Convivencia aprobado por el Consejo Directivo de la Institución Educativa La Amistad. Vigente desde el 26 de enero de 2026.", url: "" },
-    { id: 28, nombre: "Decreto 2535 de 1993 — Armas, municiones y explosivos", descripcion: "Expide normas sobre armas, municiones y explosivos. Junto con los Arts. 365 y 365A del Código Penal, sustenta la prohibición absoluta del porte de armas de fuego o blancas en establecimientos educativos.", url: "" },
-    { id: 29, nombre: "Ley 124 de 1994", descripcion: "Prohíbe el expendio de bebidas alcohólicas a menores de edad. Quien suministre, facilite el consumo o venda bebidas alcohólicas a menores será sancionado conforme a esta ley.", url: "" },
-    { id: 30, nombre: "Decreto 1108 de 1994", descripcion: "Sistematiza, coordina y reglamenta disposiciones de los Códigos del Menor, de Policía, Sanitario y otros, relacionadas con el porte y consumo de estupefacientes, sustancias psicotrópicas y bebidas alcohólicas, fijando criterios para programas educativos y de prevención.", url: "" },
-  ],
+  normas: NORMAS_BASE,
 
   // ══ 6. DISPOSICIONES — COMUNICADO No. 001 de 2026 ════════════════════════
   comunicado_header: {
@@ -438,24 +408,24 @@ Según el artículo 43 de la Ley 1098 de 2006, las instituciones educativas tien
 
   disposiciones: [
     { id: 1, tipo: "1", titulo: "Uso de mal vocabulario", accion: "Organizar un glosario con las palabras mal utilizadas. Escribir significado de la Real Academia de la Lengua y un texto de reflexión explicando las razones del porqué no se utiliza el término." },
-    { id: 2, tipo: "1", titulo: "Llegadas tarde", accion: "Se toma como llegada tarde al inicio de la jornada. Si el estudiante entre clases llega tarde, en el grupal de inasistencia, el docente de aula y/o vigilancia informa la llegada tarde y debe hacer el aseo del salón del grado asignado." },
-    { id: 3, tipo: "1", titulo: "Juego brusco", accion: "El estudiante que juegue brusco debe organizar y dirigir un juego donde se fortalezca el buen trato y la colaboración en el grupo donde se generó la dificultad. En caso de reincidencia, debe decorar y cuidar de un huevo durante 1 mes." },
-    { id: 4, tipo: "1", titulo: "No presentación de tareas escolares dejadas para la casa", accion: "En los descansos, tiempo libre entre desayunos y/o almuerzos, el estudiante debe realizar dicha actividad en reposición de lo no elaborado para ser presentadas durante la jornada." },
+    { id: 2, tipo: "1", titulo: "Llegadas tarde", accion: "Registrar la llegada y dialogar con el estudiante para identificar barreras o necesidades de apoyo. Acordar medidas formativas razonables con la familia cuando corresponda; no asignar labores de aseo como castigo." },
+    { id: 3, tipo: "1", titulo: "Juego brusco", accion: "Dialogar sobre el cuidado y la seguridad durante el juego. Cuando sea apropiado, acordar con el estudiante una actividad formativa y proporcional que promueva el buen trato, sin humillaciones ni medidas ajenas a la finalidad pedagógica." },
+    { id: 4, tipo: "1", titulo: "No presentación de tareas escolares dejadas para la casa", accion: "Dialogar con el estudiante, identificar las causas y acordar apoyos para completar o recuperar el aprendizaje conforme al SIEE. No privar al estudiante del descanso o del tiempo para alimentarse como consecuencia." },
     { id: 5, tipo: "1", titulo: "No llevar los elementos de clases", accion: "Elaborar un escrito en la agenda justificando las razones por las cuales no trajo los elementos y elaborar una lista de chequeo." },
-    { id: 6, tipo: "1", titulo: "Uso incorrecto de uniforme", accion: "Se prohíbe el uso de otras prendas diferentes a las del uniforme. Durante el descanso elabora una composición literaria para presentarla al director de grado, el acompañamiento lo hace el docente de vigilancia." },
-    { id: 7, tipo: "1", titulo: "Evasión de clase", accion: "La no asistencia parcial o total (incluyendo las llegadas tarde) a las actividades programadas dentro o fuera del aula. Para ello, el estudiante debe elaborar un mapa conceptual del tema visto que debe ser presentado en la siguiente clase a sus compañeros y elaborar una plana en el cuaderno doble línea de la frase puesta por el docente de clase." },
-    { id: 8, tipo: "1", titulo: "Apodos", accion: "Ofrecer disculpas según el contexto donde sucedió el hecho y transcribir tres veces el derecho y el deber del manual de convivencia en el cuaderno doble línea." },
-    { id: 9, tipo: "1", titulo: "Tomar elementos de compañeros sin permiso", accion: "El estudiante deberá devolver el objeto tomado sin permiso y ofrecer una excusa verbal, elaborar un cartel sobre la importancia y cuidado de pertenencias ajenas, frase en cuaderno doble línea." },
-    { id: 10, tipo: "1", titulo: "No desarrollar actividades dentro de la clase", accion: "El estudiante que no desarrolle las actividades dentro del aula, tendrá una valoración de 1.0 y si las presenta la máxima nota que tendrá en su desarrollo será de 3.3. Además, realiza una actividad dirigida por el docente (ej. traer una planta y cuidarla durante el año)." },
-    { id: 11, tipo: "1", titulo: "Copia de tareas", accion: "Para todos los estudiantes que presenten un trabajo exactamente igual evidenciando copia, no será aceptado y obtendrá una valoración de 1.0 en la actividad evaluada para todos los estudiantes involucrados. Si la actividad se desarrolla, la nota máxima será de 3.3. Investigar y socializar las implicaciones éticas y penales que genera el fraude, liderar un debate con los diferentes roles al presentarse una situación de fraude." },
-    { id: 12, tipo: "1", titulo: "Higiene y presentación personal", accion: "El estudiante se envía a orientación escolar para recibir dicha capacitación." },
-    { id: 13, tipo: "1", titulo: "Irrespeto verbal leve y desobediencia a instrucciones", accion: "Diálogo reflexivo con el afectado y el estudiante, mediado por el director de grupo o coordinador. Elaboración de una carta de disculpa formal y compromiso escrito de mejora. Reflexión individual sobre la importancia del respeto a la autoridad y el cumplimiento de normas. Realización de una actividad de apoyo al personal afectado (ej. ayudar en la organización del aula, bajo supervisión). Participación en un taller sobre comunicación asertiva y respeto." },
-    { id: 19, tipo: "1", titulo: "Actos afectivos explícitos leves", accion: "Diálogo formativo con el director de grupo sobre las normas de convivencia y la expresión del afecto en espacios institucionales. Elaboración de un escrito reflexivo sobre el respeto al entorno escolar y los límites del espacio público. Compromiso firmado de comportamiento adecuado dentro de la institución." },
-    { id: 20, tipo: "1", titulo: "Publicación de comentarios burlones en medios digitales", accion: "Reflexión guiada sobre el impacto de las palabras en entornos digitales. Elaborar una publicación positiva o mensaje de disculpa dirigido a la persona afectada en el mismo medio donde ocurrió el hecho. Participación en el taller 'Mis Palabras en la Red'." },
-    { id: 32, tipo: "1", titulo: "Orientación — Piercings, tatuajes y expresión personal", accion: "Orientación formativa sin carácter sancionatorio (Sentencias T-839/2007 y T-789/2013): el docente orientador ofrece una sesión informativa sobre salud y autocuidado — riesgo de infecciones, alergias y complicaciones en menores de edad — y sobre la importancia de la consulta con padres para procedimientos irreversibles, en el marco del programa de Educación Sexual Integral." },
-    { id: 34, tipo: "1", titulo: "Afectación emocional leve entre pares y expresión inadecuada de emociones", accion: "Círculo de diálogo restaurativo mediado por el director de grupo entre los involucrados. Actividad guiada de empatía: el estudiante escribe desde la perspectiva del compañero afectado cómo se sintió la situación. Acompañamiento con enfoque socioemocional: espacio breve de escucha activa y remisión al orientador escolar para trabajo en autorregulación emocional (técnicas de respiración, identificación y manejo de emociones). Participación en el módulo de la Cátedra de Educación Emocional (Ley 2383/2024). Registro formativo en el observador, no punitivo. Si persiste, se articula con la familia." },
+    { id: 6, tipo: "1", titulo: "Uso del uniforme", accion: "Conversar en privado sobre los acuerdos institucionales y verificar si existen razones económicas, de salud, identidad, discapacidad u otras necesidades de ajuste. Aplicar únicamente reglas vigentes, razonables y respetuosas de los derechos; no retirar al estudiante de clase por su apariencia." },
+    { id: 7, tipo: "1", titulo: "Inasistencia o salida no autorizada de clase", accion: "Verificar lo sucedido y escuchar al estudiante. Acordar apoyos para recuperar los aprendizajes, considerar posibles riesgos o necesidades de protección y comunicar a la familia cuando corresponda; no imponer planas o actividades humillantes." },
+    { id: 8, tipo: "1", titulo: "Apodos", accion: "Dialogar sobre el impacto del lenguaje y acordar medidas formativas. Una disculpa solo se propone si es voluntaria, segura y aceptada por la persona afectada; no imponer ejercicios repetitivos ni encuentros forzados." },
+    { id: 9, tipo: "1", titulo: "Tomar elementos de compañeros sin permiso", accion: "Verificar los hechos, devolver el objeto cuando corresponda y conversar sobre el respeto a las pertenencias. Cualquier disculpa o acción restaurativa debe ser voluntaria y apropiada al caso." },
+    { id: 10, tipo: "1", titulo: "No desarrollar actividades dentro de la clase", accion: "Identificar las causas, ofrecer apoyo para participar y recuperar aprendizajes conforme al SIEE. La valoración debe reflejar evidencias de aprendizaje y no utilizarse como sanción disciplinaria automática." },
+    { id: 11, tipo: "1", titulo: "Posible copia o colaboración no autorizada", accion: "Revisar cada trabajo y escuchar a cada estudiante antes de concluir. Cualquier ajuste de evaluación debe basarse en el Sistema Institucional de Evaluación de los Estudiantes (SIEE), aplicarse individualmente y no convertirse en una sanción automática colectiva. Ofrecer orientación sobre citación y honestidad académica." },
+    { id: 12, tipo: "1", titulo: "Higiene y presentación personal", accion: "Abordar cualquier preocupación con privacidad, respeto y enfoque de salud o apoyo. No avergonzar, excluir de clase ni imponer medidas relacionadas con características personales." },
+    { id: 13, tipo: "1", titulo: "Irrespeto verbal leve y desacuerdo con instrucciones", accion: "Escuchar a las personas involucradas y promover un diálogo formativo sobre comunicación respetuosa. Acordar apoyos o compromisos proporcionales; las disculpas y acciones restaurativas no son obligatorias." },
+    { id: 19, tipo: "1", titulo: "Manifestaciones afectivas en el entorno escolar", accion: "Intervenir únicamente cuando exista una razón pedagógica o de protección concreta, tratando a las personas con respeto e igualdad. No sancionar una manifestación afectiva por sí sola ni imponer restricciones basadas en prejuicios." },
+    { id: 20, tipo: "1", titulo: "Comentarios burlones en medios digitales", accion: "Proteger a las personas afectadas y conversar sobre el impacto de los mensajes. No exigir publicaciones públicas ni disculpas en línea; cualquier medida restaurativa debe ser voluntaria y cuidar la privacidad." },
+    { id: 32, tipo: "1", titulo: "Orientación — Piercings, tatuajes y expresión personal", accion: "Orientación formativa sin carácter sancionatorio: la Sentencia T-839/2007 aborda el libre desarrollo de la personalidad y el uso de piercing o arete. La Sentencia T-789/2013 trata sobre el derecho a la educación y la tutela frente a prestadores de ese servicio; no es una sentencia sobre tatuajes. El docente orientador ofrece información sobre salud y autocuidado, sin imponer restricciones no previstas legalmente." },
+    { id: 34, tipo: "1", titulo: "Afectación emocional leve entre pares y expresión inadecuada de emociones", accion: "Ofrecer escucha y apoyo socioemocional, respetando la privacidad. Un diálogo restaurativo solo se propone si es seguro y aceptado libremente; no exigir que el estudiante represente o narre la experiencia de otra persona." },
     { id: 36, tipo: "1", titulo: "Divulgación e incentivación para realizarse tatuajes o piercings", accion: "Diálogo formativo con el director de grupo sobre la responsabilidad en el discurso entre pares y el respeto a las decisiones personales de los demás. El estudiante elabora un escrito sobre las consecuencias físicas (infecciones, alergias) de realizarse procedimientos corporales sin la debida orientación médica y sin acompañamiento de adultos responsables. Se informa a los padres de familia de manera preventiva." },
-    { id: 42, tipo: "1", titulo: "Uso o tenencia no autorizada de dispositivo móvil durante la jornada escolar", accion: "De conformidad con la Ley 2170 de 2021 y el presente Manual de Convivencia, el estudiante tiene la obligación de entregar voluntariamente su dispositivo móvil (celular, tableta u otro dispositivo electrónico personal) al director de grupo al inicio de la primera hora de la jornada académica. El dispositivo será resguardado bajo la custodia responsable del docente y restituido al estudiante al finalizar la jornada escolar. Primera ocurrencia: llamado de atención verbal y registro en el observador. Segunda ocurrencia: llamado de atención formal con notificación escrita al padre de familia o acudiente. Tercera ocurrencia o negativa reiterada a entregar el dispositivo voluntariamente: decomiso del dispositivo por un período de un (1) mes calendario, el cual quedará bajo custodia de la coordinación o rectoría, y solo podrá ser reclamado por el padre de familia o acudiente legalmente responsable. Acción pedagógica complementaria: el estudiante elabora un escrito reflexivo sobre el impacto del uso del celular en su proceso de aprendizaje y en la convivencia del aula, y lo socializa con su director de grupo." },
+    { id: 42, tipo: "1", titulo: "Uso de dispositivos móviles durante la jornada escolar", accion: "Regular el uso de dispositivos conforme a la Ley 2170 de 2021 y a los acuerdos institucionales vigentes, comunicados y aplicados con criterios pedagógicos. Si se requiere guardar temporalmente un dispositivo, informar al estudiante, protegerlo y devolverlo oportunamente; no exigir su entrega obligatoria al inicio de la jornada ni retenerlo por un mes como sanción. Respetar la privacidad de la información personal." },
     { id: 44, tipo: "1", titulo: "No presentar la excusa dentro del plazo establecido", accion: "El estudiante presenta la excusa de manera tardía con acompañamiento del director de grupo. Elabora un compromiso escrito sobre la importancia de la comunicación oportuna entre la familia y la institución. Registro de seguimiento en el observador." },
     { id: 45, tipo: "1", titulo: "No portar la agenda escolar institucional", accion: "El estudiante repone o adecúa su agenda escolar en un plazo máximo de tres (3) días hábiles. Elabora una reflexión escrita sobre la importancia de la agenda como herramienta de organización personal y de comunicación entre la familia y la institución." },
     { id: 46, tipo: "1", titulo: "Arrojar basura en espacios institucionales", accion: "El estudiante realiza una jornada de recolección de residuos en la zona afectada, con los implementos de protección adecuados y bajo supervisión. Elabora un material visual (cartel o afiche) sobre el cuidado del medio ambiente escolar para exhibir en la institución." },
@@ -463,37 +433,37 @@ Según el artículo 43 de la Ley 1098 de 2006, las instituciones educativas tien
     { id: 48, tipo: "1", titulo: "Venta de alimentos o elementos sin autorización", accion: "Los productos son retenidos y entregados a los acudientes al finalizar la jornada. El estudiante participa en un diálogo formativo con el director de grupo sobre las normas institucionales relacionadas con la venta de productos dentro del colegio, y elabora una reflexión escrita sobre el uso adecuado del tiempo y los espacios escolares." },
     { id: 49, tipo: "1", titulo: "Consumir alimentos o masticar chicle dentro del aula", accion: "El estudiante realiza la limpieza de su puesto de trabajo y de la zona del aula afectada al finalizar la jornada. Participa en una breve reflexión guiada sobre los momentos y espacios adecuados para el consumo de alimentos dentro de la institución." },
     { id: 50, tipo: "1", titulo: "No entregar oportunamente comunicados a los acudientes", accion: "El estudiante entrega el comunicado pendiente en un plazo máximo de un (1) día, con acompañamiento del director de grupo. Firma un compromiso escrito sobre la importancia de la comunicación entre la familia y la institución. En caso de reincidencia, se registra en el observador y se cita al acudiente." },
-    { id: 15, tipo: "2", titulo: "Agresión verbal reiterada o grave", accion: "Activación del Comité Escolar de Convivencia. Mediación restaurativa con el afectado, el estudiante y sus acudientes. Plan de reparación: servicio comunitario, campañas de sensibilización o creación de material didáctico que promueva el buen trato. Acompañamiento psicosocial para identificar las causas del comportamiento." },
-    { id: 33, tipo: "2", titulo: "Consumo o porte de cigarrillos, tabaco o vapeadores", accion: "Decomiso inmediato del producto y notificación a padres o acudientes. Remisión a orientación escolar para sesión informativa sobre riesgos del consumo de nicotina, tabaco y vapeo en adolescentes (daño pulmonar, cardiovascular, dependencia). El estudiante elabora un informe sobre las consecuencias del consumo y lo socializa con su grupo. Compromiso escrito de no repetición firmado por estudiante y acudiente. Si hay distribución, venta o se detecta consumo de sustancias psicoactivas ilegales, la situación escala a Tipo III (Ley 2354/2024 — Ley 1335/2009)." },
-    { id: 16, tipo: "2", titulo: "Agresión física leve", accion: "Activación del Comité Escolar de Convivencia. Diálogo restaurativo sobre el daño causado y sus consecuencias. Plan de reparación: servicio comunitario enfocado en la no violencia o talleres de manejo de la ira y resolución pacífica de conflictos. Acompañamiento psicosocial y seguimiento continuo." },
-    { id: 17, tipo: "2", titulo: "Vandalismo o daño a bienes del personal o la institución", accion: "Reparación económica o material del daño causado. Trabajo comunitario para el mantenimiento o embellecimiento de la institución. Reflexión escrita sobre el valor de los bienes comunes y el respeto por el trabajo de los demás." },
-    { id: 21, tipo: "2", titulo: "Bullying / Acoso escolar", accion: "Activación del Comité Escolar de Convivencia. Separación preventiva de los involucrados y medidas de protección inmediata para la víctima. Plan de acompañamiento psicosocial para agresor y víctima. Acuerdo de reparación y no repetición: el agresor participa en talleres de empatía y resolución pacífica de conflictos y lidera una campaña contra el acoso escolar dentro de la institución. Escuela de padres con seguimiento periódico." },
-    { id: 22, tipo: "2", titulo: "Cyberbullying / Ciberacoso", accion: "Activación del Comité Escolar de Convivencia. Recopilación de evidencias digitales (pantallazos, registros). Restricción supervisada del uso de dispositivos en la institución. El estudiante agresor participa en el taller 'Ciberconvivencia Responsable' y elabora un protocolo de uso responsable de redes sociales para socializar con el grupo. Acompañamiento psicosocial a la víctima y seguimiento continuo." },
+    { id: 15, tipo: "2", titulo: "Agresión verbal reiterada o grave", accion: "Activar el protocolo correspondiente, escuchar a las personas involucradas y adoptar medidas de protección y acompañamiento. Las acciones restaurativas solo se proponen si son pertinentes, seguras y voluntarias; garantizar el debido proceso antes de imponer cualquier medida." },
+    { id: 33, tipo: "2", titulo: "Consumo o porte de cigarrillos, tabaco o vapeadores", accion: "Atender la situación conforme a la normativa aplicable y a las circunstancias, priorizando la protección de la salud, la orientación y la comunicación con la familia. La venta, distribución o consumo de otras sustancias no convierte automáticamente el caso en Tipo III: activar los protocolos externos cuando los hechos puedan constituir un presunto delito y brindar protección sin anticipar responsabilidades." },
+    { id: 16, tipo: "2", titulo: "Agresión física", accion: "Atender cualquier necesidad de salud y protección, escuchar a las personas involucradas y aplicar el protocolo que corresponda según los hechos. Ofrecer acompañamiento; no imponer mediación, servicio comunitario ni medidas restaurativas antes de establecer responsabilidades." },
+    { id: 17, tipo: "2", titulo: "Posible daño a bienes del personal o la institución", accion: "Verificar los hechos y escuchar al estudiante. Si se establece responsabilidad, considerar una acción proporcional de reparación conforme al Manual y al debido proceso; no imponer cobros o trabajo como consecuencia automática." },
+    { id: 21, tipo: "2", titulo: "Bullying / Acoso escolar", accion: "Activar el protocolo correspondiente, adoptar medidas para proteger a las personas involucradas e informar a sus familias. Ofrecer acompañamiento psicosocial y seguimiento. Las medidas restaurativas, si son seguras y pertinentes, requieren participación voluntaria y no reemplazan el debido proceso." },
+    { id: 22, tipo: "2", titulo: "Cyberbullying / Ciberacoso", accion: "Activar el protocolo correspondiente, proteger a las personas y conservar de forma segura la información pertinente. Ofrecer acompañamiento y seguimiento. Las acciones pedagógicas deben basarse en los hechos establecidos, respetar el debido proceso y no exigir contacto entre las personas involucradas." },
     { id: 23, tipo: "2", titulo: "Troleo sistemático", accion: "Activación del Comité Escolar de Convivencia. El estudiante elabora un mapa de consecuencias del troleo sistemático y lo presenta ante el grupo. Restricción del uso de dispositivos en la institución con supervisión docente. Compromiso firmado de cese del comportamiento y acompañamiento psicosocial para identificar causas." },
-    { id: 24, tipo: "2", titulo: "Amenaza digital", accion: "Activación del Comité Escolar de Convivencia. Recopilación inmediata de evidencias digitales. Protección a la persona amenazada con acompañamiento permanente. El estudiante agresor realiza un proceso de mediación restaurativa con el afectado y sus familias, y elabora un compromiso escrito de no repetición. Si hay reincidencia, se activa protocolo Tipo III." },
-    { id: 25, tipo: "2", titulo: "Violencia escolar (sin delito)", accion: "Activación del Comité Escolar de Convivencia. Medidas de protección inmediata y separación de los involucrados. Plan de reparación con acción de servicio comunitario dentro de la institución y participación en talleres de convivencia. Acompañamiento psicosocial al agresor y seguimiento del caso por el Comité." },
-    { id: 26, tipo: "2", titulo: "Violencia digital sexual (no constitutiva de delito)", accion: "Activación del Comité Escolar de Convivencia. Eliminación inmediata del contenido en los medios digitales donde fue difundido. Protección de la identidad y dignidad de la persona afectada. El estudiante agresor elabora un proyecto de sensibilización sobre el respeto a la imagen e intimidad digital para presentar ante la comunidad educativa. Acompañamiento psicosocial a ambas partes." },
-    { id: 27, tipo: "2", titulo: "Difusión de imágenes sin consentimiento (no constitutiva de delito)", accion: "Activación del Comité Escolar de Convivencia. Solicitud inmediata de eliminación del contenido en todas las plataformas. Protección de la víctima y acompañamiento psicosocial. El estudiante agresor elabora un ensayo sobre el derecho a la intimidad y lo socializa con su grupo. Compromiso de no repetición con firma de acudientes." },
-    { id: 37, tipo: "2", titulo: "Reincidencia sistemática en faltas Tipo I", accion: "Citación inmediata a padres o acudientes para sesión con el director de grupo y el orientador escolar. Remisión al Comité Escolar de Convivencia para apertura de proceso formal. Diseño de un Plan de Mejoramiento Individual (PMI) con metas concretas de convivencia, académicas y emocionales, con seguimiento quincenal. Si el PMI no se cumple, se escala al Consejo Directivo." },
-    { id: 38, tipo: "2", titulo: "Intimidación o coacción sistemática", accion: "Activación del Comité Escolar de Convivencia. Medidas de protección inmediata para la persona afectada. Mediación restaurativa con presencia de acudientes. Plan de reparación: el agresor lidera una actividad institucional sobre convivencia y dignidad humana. Acompañamiento psicosocial y reporte al Sistema de Información Unificado de Convivencia Escolar." },
+    { id: 24, tipo: "2", titulo: "Amenaza digital", accion: "Activar las medidas de protección y conservar la información pertinente de forma segura, evitando su difusión. Valorar los hechos según los criterios de la Ruta de Atención Integral; si pueden constituir un presunto delito, activar también el protocolo Tipo III. La reincidencia por sí sola no determina esa clasificación." },
+    { id: 25, tipo: "2", titulo: "Violencia escolar", accion: "Activar el protocolo correspondiente según los criterios y hechos del caso. Adoptar medidas de protección proporcionales, ofrecer acompañamiento y seguimiento. No asumir que no existe un posible delito ni imponer separación o reparación como sanción automática." },
+    { id: 26, tipo: "2", titulo: "Presunta violencia digital sexual", accion: "Proteger a la persona afectada, evitar la difusión del contenido y activar los protocolos pertinentes. La clasificación depende de los hechos y no debe descartarse una posible conducta delictiva sin valoración. Ofrecer apoyo sin imponer encuentros ni acciones restaurativas." },
+    { id: 27, tipo: "2", titulo: "Difusión de imágenes sin consentimiento", accion: "Proteger a la persona afectada, evitar descargar o volver a difundir el contenido y activar las rutas pertinentes. La clasificación jurídica depende de los hechos. Ofrecer acompañamiento y garantizar el debido proceso sin imponer disculpas ni contacto directo." },
+    { id: 37, tipo: "2", titulo: "Seguimiento de situaciones reiteradas", accion: "Analizar las circunstancias de cada situación, escuchar al estudiante y su familia y ofrecer apoyos pedagógicos. La reiteración puede requerir seguimiento o intervención institucional, pero no cambia automáticamente la clasificación a Tipo II ni determina una sanción; aplicar los criterios de la Ruta de Atención Integral y el debido proceso." },
+    { id: 38, tipo: "2", titulo: "Intimidación o coacción sistemática", accion: "Activar el protocolo correspondiente y adoptar medidas para proteger a la persona afectada. Ofrecer acompañamiento psicosocial y seguimiento; cualquier medida restaurativa debe ser segura, pertinente y voluntaria, sin prejuzgar responsabilidades." },
     { id: 52, tipo: "2", titulo: "Salida no autorizada de la institución", accion: "Notificación inmediata a los padres o acudientes. Activación del protocolo de búsqueda institucional si es necesario. El estudiante y su acudiente firman un compromiso de cumplimiento de los conductos regulares de salida. Participación en el taller 'Tejiendo Acuerdos' sobre normas de convivencia institucional. Registro en el observador." },
-    { id: 53, tipo: "2", titulo: "Uso indebido del uniforme institucional fuera de las instalaciones", accion: "Diálogo formativo con el director de grupo y el docente orientador sobre la representación institucional y el cuidado de la imagen personal y colectiva. El estudiante elabora una pieza de comunicación (cartel, video corto o publicación) sobre el uso responsable del uniforme y de las redes sociales, y la socializa con su grupo. Cuando corresponda, se solicita el retiro de las publicaciones. Compromiso escrito firmado por el estudiante y su acudiente." },
-    { id: 54, tipo: "2", titulo: "Falsificación de firmas de acudientes, docentes o funcionarios", accion: "Notificación inmediata a los acudientes. El estudiante presenta una carta de reconocimiento del hecho dirigida a la persona cuya firma fue falsificada. Participación en un taller sobre ética, honestidad académica y consecuencias de la falsificación de documentos. Compromiso escrito de no repetición." },
-    { id: 55, tipo: "2", titulo: "Discriminación por razones de sexo, etnia, religión, orientación sexual u otra condición", accion: "Activación del Comité Escolar de Convivencia. Mediación restaurativa con la persona afectada y sus acudientes. El estudiante participa en un taller de sensibilización sobre diversidad, inclusión y derechos humanos (Ley 1482/2011) y elabora una pieza informativa sobre el respeto a la diferencia para socializar con la comunidad educativa. Acompañamiento psicosocial." },
-    { id: 56, tipo: "2", titulo: "Plagio académico — uso de fuentes sin citación bibliográfica", accion: "El trabajo no es aceptado en su forma original. El estudiante debe rehacerlo incluyendo la citación adecuada según las normas institucionales de referenciación. Participa en un taller sobre normas de citación y honestidad académica. La nueva entrega tendrá como nota máxima 3.3." },
+    { id: 53, tipo: "2", titulo: "Conducta fuera del plantel con posible vínculo escolar", accion: "Valorar si los hechos se relacionan directamente con una actividad institucional o afectan derechos de integrantes de la comunidad educativa. No imponer medidas únicamente por conductas lícitas fuera del plantel o por el uso del uniforme; cualquier actuación debe estar prevista en el Manual y respetar los derechos y el debido proceso." },
+    { id: 54, tipo: "2", titulo: "Posible alteración o falsificación de firmas", accion: "Verificar los hechos, escuchar al estudiante y su familia y aplicar el procedimiento previsto en el Manual. No exigir una carta de reconocimiento antes de concluir el proceso; considerar medidas pedagógicas proporcionales y apoyos pertinentes." },
+    { id: 55, tipo: "2", titulo: "Presunta discriminación", accion: "Proteger y escuchar a la persona afectada, atender el reporte con diligencia y activar las instancias correspondientes. Ofrecer apoyos y medidas pedagógicas, respetando la privacidad y el debido proceso. No imponer mediación o encuentros con quien reporta la afectación." },
+    { id: 56, tipo: "2", titulo: "Posible plagio académico", accion: "Verificar las fuentes y escuchar al estudiante. Aplicar los criterios y procedimientos académicos del SIEE, de forma individual, y ofrecer orientación sobre citación. No imponer una calificación máxima automática como sanción disciplinaria." },
     { id: 57, tipo: "2", titulo: "Encubrimiento de faltas de compañeros", accion: "Diálogo reflexivo con el director de grupo sobre la importancia de la verdad y la corresponsabilidad en la convivencia escolar. El estudiante elabora un escrito sobre las consecuencias del encubrimiento para la convivencia institucional. Compromiso escrito de actuar con transparencia." },
     { id: 58, tipo: "2", titulo: "Perturbación reiterada del normal desarrollo de las clases", accion: "Activación de un plan de acompañamiento conductual con el docente orientador. Citación a los acudientes. El estudiante, junto con el docente, elabora un acuerdo de aula con compromisos específicos de comportamiento. Seguimiento semanal por el director de grupo." },
-    { id: 59, tipo: "2", titulo: "Presentarse bajo efectos de alcohol o SPA sin evidencia de consumo en el plantel", accion: "Remisión inmediata al docente orientador y, si es necesario, al servicio de salud. Notificación inmediata a los acudientes. Activación del programa institucional de prevención del consumo de SPA y alcohol. Acompañamiento psicosocial. Si se evidencia consumo, porte o distribución dentro de la institución, la situación escala de inmediato al protocolo Tipo III." },
+    { id: 59, tipo: "2", titulo: "Presentarse bajo efectos de alcohol o SPA", accion: "Priorizar la atención de salud y seguridad, informar a la familia y ofrecer acompañamiento. Valorar separadamente los hechos y activar las rutas externas cuando corresponda; el consumo o porte por sí solo no convierte automáticamente la situación en Tipo III." },
     { id: 60, tipo: "2", titulo: "Juegos de azar, rifas o apuestas con fines de lucro personal", accion: "Decomiso de los elementos utilizados (dinero, fichas u otros), que serán entregados a los acudientes. Diálogo formativo sobre los riesgos del juego y la ludopatía. El estudiante elabora una pieza informativa al respecto para socializar con su grupo. Compromiso escrito de no repetición." },
-    { id: 61, tipo: "2", titulo: "Portar, visualizar o circular material pornográfico o de desnudez", accion: "Activación del Comité Escolar de Convivencia. Eliminación inmediata del material si fue compartido digitalmente. Notificación a los acudientes. Acompañamiento psicosocial en el marco del programa de Educación Sexual Integral. Compromiso escrito de no repetición. IMPORTANTE: si el material involucra a menores de la comunidad educativa, se activa de inmediato el protocolo Tipo III por configurar pornografía infantil (Ley 679/2001)." },
-    { id: 62, tipo: "2", titulo: "Pertenencia o participación en pandillas o grupos juveniles", accion: "Activación del Comité Escolar de Convivencia. Acompañamiento psicosocial individualizado. Articulación con la familia y, si es pertinente, con la Policía de Infancia y Adolescencia para programas de prevención. Plan de seguimiento periódico. Si se evidencia uso de armas, sustancias psicoactivas o violencia asociada, la situación escala de inmediato al protocolo Tipo III." },
+    { id: 61, tipo: "2", titulo: "Circulación de material íntimo o sexual", accion: "Proteger a las personas involucradas, evitar descargar, copiar o volver a difundir el material, informar a las familias y ofrecer acompañamiento. Si los hechos pueden constituir un presunto delito, activar también la Ruta Tipo III y acudir a las autoridades competentes; la presencia de una persona menor de edad no permite calificar automáticamente el hecho." },
+    { id: 62, tipo: "2", titulo: "Participación en grupos que pueda afectar la convivencia", accion: "Valorar conductas concretas, proteger a las personas y ofrecer orientación y acompañamiento. La pertenencia o participación no es por sí sola una Situación Tipo III; activar esa ruta únicamente cuando los hechos puedan constituir un presunto delito." },
 
-    { id: 28, tipo: "3", titulo: "Grooming", accion: "Denuncia inmediata y obligatoria ante la Fiscalía General de la Nación y la Policía de Infancia y Adolescencia. Reporte al ICBF para activación de medidas de protección del menor. Protección integral de la víctima: flexibilización académica, acompañamiento psicológico especializado y protección de su identidad. Separación preventiva del presunto agresor si pertenece a la institución. Seguimiento coordinado con autoridades competentes." },
-    { id: 29, tipo: "3", titulo: "Sextorsión", accion: "Denuncia inmediata ante la Fiscalía (extorsión agravada y delito informático — Ley 1273/2009). Reporte al ICBF si la víctima es menor de edad. Protección integral: acompañamiento psicológico, jurídico y académico. No se exige a la víctima mostrar o entregar el material comprometedor. Apoyo para la eliminación del contenido de plataformas en coordinación con autoridades. Seguimiento continuo por el Comité." },
+    { id: 28, tipo: "3", titulo: "Presunto grooming o captación digital con fines de abuso", accion: "Activar de inmediato las medidas de protección y las rutas correspondientes, poner los hechos en conocimiento de las autoridades competentes conforme al protocolo y proteger la identidad de la persona afectada. No exigir que muestre o entregue contenido íntimo ni ordenar medidas disciplinarias automáticas." },
+    { id: 29, tipo: "3", titulo: "Presunta sextorsión", accion: "Proteger a la persona afectada, evitar la difusión del contenido y activar las rutas de atención y protección. Poner los hechos en conocimiento de las autoridades competentes conforme a las obligaciones aplicables. No exigir que la persona muestre o entregue material íntimo ni anticipar su calificación penal." },
     { id: 30, tipo: "3", titulo: "Delitos cibernéticos", accion: "Denuncia ante la Fiscalía General de la Nación (Ley 1273 de 2009). Recopilación y preservación de evidencias digitales. Reporte al Sistema de Información Unificado de Convivencia Escolar. Protección de las personas afectadas y acompañamiento psicosocial. Activación de protocolos con Policía Nacional e ICBF según el tipo de delito." },
-    { id: 31, tipo: "3", titulo: "Difusión de imágenes íntimas constitutiva de delito", accion: "Denuncia inmediata ante la Fiscalía (Art. 229C del Código Penal). Apoyo para eliminación urgente del contenido en plataformas digitales. Protección integral y acompañamiento psicológico y jurídico especializado. No se revictimizará a la persona afectada. Activación de la Ruta de Atención Integral y seguimiento coordinado con autoridades." },
-    { id: 68, tipo: "3", titulo: "Agresión escolar — física, verbal, gestual, relacional y electrónica", accion: "Activación inmediata de la Ruta de Atención Integral. Atención en salud física y mental si hay lesiones o daño emocional grave. Notificación inmediata a padres o acudientes. Separación preventiva de los involucrados y medidas de protección para la víctima. Remisión al Comité Escolar de Convivencia para análisis del caso y determinación del tipo de agresión. Si la conducta constituye un presunto delito, denuncia ante la Fiscalía General de la Nación y la Policía de Infancia y Adolescencia. Plan de reparación restaurativa: el agresor reconoce el daño causado, ofrece disculpas y establece un acuerdo de no repetición. Acompañamiento psicosocial a víctima y agresor. Reporte al Sistema de Información Unificado de Convivencia Escolar. Seguimiento periódico por el Comité de Convivencia." },
-    { id: 39, tipo: "3", titulo: "Violencia sexual, digital grave, amenaza grave y agresión física grave", accion: "Denuncia inmediata y obligatoria ante la Fiscalía General de la Nación, la Policía de Infancia y Adolescencia y la Comisaría de Familia. Activación de la Ruta de Atención Integral. Reporte al ICBF para activación de medidas de protección y restablecimiento de derechos. Protección integral a la víctima: flexibilización académica, acompañamiento psicológico especializado, protección de identidad y monitoreo permanente. No revictimización en ninguna etapa del proceso. Si el presunto agresor pertenece a la institución, separación preventiva inmediata del cargo. Medidas de protección para todas las personas afectadas. Acompañamiento psicosocial y jurídico. Seguimiento continuo por el Comité de Convivencia en coordinación con todas las entidades competentes." },
+    { id: 31, tipo: "3", titulo: "Difusión no consentida de imágenes íntimas", accion: "Activar las medidas de protección y el protocolo institucional, preservar de forma segura la información pertinente y acudir a las autoridades competentes para que valoren los hechos. Apoyar la solicitud de retiro del contenido en plataformas digitales. Protección integral y acompañamiento psicológico y jurídico especializado. No se revictimizará a la persona afectada." },
+    { id: 68, tipo: "contextual", titulo: "Agresión escolar — criterios de clasificación", accion: "La agresión puede ser física, verbal, gestual, relacional o digital. Clasificarla según los hechos y los criterios legales: Tipo I si es esporádica y no causa daño a la salud; Tipo II si es repetida o sistemática, o causa daño físico o mental sin incapacidad, y no constituye presunto delito; Tipo III solo cuando los hechos puedan constituir un presunto delito. Atender y proteger de inmediato, sin presumir culpabilidad ni imponer mediación o reparación." },
+    { id: 39, tipo: "3", titulo: "Situación que pueda constituir un presunto delito", accion: "Activar de inmediato el protocolo Tipo III, brindar atención en salud cuando corresponda y poner los hechos en conocimiento de la Policía Nacional conforme a la Ruta de Atención Integral. Contactar a las demás autoridades de protección o investigación según los hechos y las obligaciones aplicables. Proteger la intimidad, evitar la revictimización y garantizar medidas de apoyo para todas las personas involucradas. No separar ni sancionar automáticamente a ninguna persona; cualquier medida debe corresponder a la autoridad competente y a la normativa aplicable." },
     { id: 40, tipo: "3", titulo: "Ingerir, portar, distribuir o expender SPA, cigarrillos, tabaco o vapeadores en el contexto escolar", accion: "Activación inmediata de la Ruta de Atención Integral. Remisión urgente al servicio de salud si hay indicios de consumo activo o intoxicación. Notificación inmediata a padres o acudientes. Reporte al ICBF y a las autoridades competentes (Decreto 1844/2018, Ley 2354/2024, Ley 30/1986). Reporte al Sistema de Información Unificado de Convivencia Escolar. Acompañamiento psicosocial especializado. El Comité de Convivencia evaluará medidas de protección y seguimiento, garantizando el derecho a la educación del estudiante." },
     { id: 63, tipo: "3", titulo: "Uso, porte, fabricación o tráfico de armas de fuego, armas blancas o explosivos", accion: "Decomiso inmediato del elemento y resguardo seguro del mismo. Activación inmediata de la Ruta de Atención Integral. Notificación inmediata a los acudientes y a la Policía Nacional. Denuncia ante las autoridades competentes (Fiscalía). Reporte al Sistema de Información Unificado de Convivencia Escolar. El Comité de Convivencia evaluará la permanencia del estudiante en la institución, garantizando el debido proceso. Acompañamiento psicosocial." },
     { id: 64, tipo: "3", titulo: "Portar, comprar, consumir o suministrar bebidas alcohólicas en el contexto escolar", accion: "Notificación inmediata a los acudientes. Remisión al docente orientador y, si es necesario, al servicio de salud. Activación del programa institucional de prevención del consumo de SPA y alcohol. Reporte al Sistema de Información Unificado de Convivencia Escolar. El Comité de Convivencia define un plan de acompañamiento y seguimiento, garantizando el derecho a la educación del estudiante." },
@@ -546,7 +516,7 @@ Según el artículo 43 de la Ley 1098 de 2006, las instituciones educativas tien
         "Mediar de manera pedagógica con las personas involucradas, reuniendo a las partes para que expongan sus puntos de vista.",
         "Fijar formas de solución de manera imparcial, equitativa y justa, y acciones para la reparación de los daños causados, el restablecimiento de los derechos y la reconciliación.",
         "Buscar entre las personas involucradas la estrategia para reparar los daños causados, restablecer los derechos e iniciar una reconciliación.",
-        "Establecer por escrito el compromiso del estudiante de no reincidir en la falta y hacer seguimiento para verificar su cumplimiento y si la solución fue efectiva; si hay reincidencia o la situación lo requiere, acudir a los protocolos de situaciones Tipo II.",
+        "Registrar los acuerdos y hacer seguimiento a su efectividad. Si hay nuevos hechos, valorar si cumplen por sí mismos los criterios de una situación Tipo II o requieren otros apoyos; la reiteración no produce un cambio automático de clasificación.",
       ],
       medidas: [
         { titulo: "Llamado de atención verbal", descripcion: "Cuando se comete alguna falta Tipo I se hará un llamado de atención verbal en primera instancia para concientizar al estudiante sobre su actuación y cómo puede afectar su proceso de formación. En el registro del llamado se dejará constancia del compromiso del estudiante de no reincidir en la falta." },
@@ -567,38 +537,39 @@ Según el artículo 43 de la Ley 1098 de 2006, las instituciones educativas tien
       situaciones_disciplinarias: [
         "Bullying, acoso escolar e intimidación sistemática: conducta agresiva, intencional y repetida ejercida por uno o varios estudiantes contra otro a través de golpes, insultos, exclusión, humillaciones, apodos ofensivos o coacción reiterada para realizar actividades que atenten contra la dignidad física o moral, causando sufrimiento físico, psicológico o social.",
         "Cyberbullying / Ciberacoso y troleo sistemático: uso reiterado de medios digitales (redes sociales, WhatsApp, plataformas digitales) para acosar, humillar, excluir, publicar contenidos provocadores o dañar psicológicamente a un miembro de la comunidad educativa de forma repetida y deliberada. Incluye difusión de rumores, suplantación de identidad, exclusión deliberada de grupos, comentarios ofensivos y publicaciones perturbadoras que causan daño psicológico medible.",
-        "Amenaza digital: uso de medios digitales (mensajes, publicaciones, audios, videos) para intimidar, amedrentar o generar miedo en un miembro de la comunidad educativa, sin que la amenaza configure un delito penal grave.",
+        "Amenaza digital: uso de medios digitales para intimidar o generar miedo. Valorar los hechos y activar medidas de protección; la clasificación depende de los criterios de la Ruta y de si pueden constituir un presunto delito.",
         "Violencia escolar y agresión física leve: agresiones físicas sin lesiones graves, empujones, forcejeos, lanzamiento de objetos, contacto físico no consentido, intimidación constante o comportamientos coercitivos reiterados que afectan la convivencia escolar sin constituir delito penal.",
         "Difusión de imágenes sin consentimiento (no constitutiva de delito): compartir fotografías, videos o pantallazos de una persona en situaciones comprometedoras, privadas o que la exponen al ridículo, sin su autorización, causando daño a su imagen e integridad emocional.",
         "Agresión verbal reiterada o grave: insultos, calumnias, difamación, amenazas leves o lenguaje ofensivo de forma repetitiva o con intención de denigrar a un miembro del personal, de forma presencial o por medios digitales.",
         "Vandalismo o daño a bienes: dañar intencionalmente objetos personales de docentes, personal de aseo, ecónomas, administrativos o infraestructura de la institución.",
-        "Reincidencia sistemática en faltas Tipo I: cuando un estudiante acumula tres o más faltas Tipo I sin demostrar cambio de actitud — incluyendo irrespeto reiterado, incumplimiento continuo de obligaciones académicas o de convivencia, o no acatamiento de las disposiciones y acciones pedagógicas establecidas — dicho patrón escala automáticamente a situación Tipo II, requiriendo la intervención del Comité Escolar de Convivencia y la citación de padres o acudientes.",
+        "Las conductas descritas a continuación son ejemplos orientadores: solo corresponden a Tipo II si cumplen los criterios legales de repetición o daño a la salud, no constituyen presunto delito y se valoran según las circunstancias.",
+        "Reiteración de situaciones previas: requiere valorar individualmente los hechos, escuchar al estudiante y considerar apoyos pedagógicos. El número de reportes no cambia automáticamente la clasificación; una Situación Tipo II debe cumplir sus criterios legales.",
         "Salida no autorizada de la institución: ausentarse de las instalaciones educativas sin el permiso de coordinación o rectoría y sin la autorización del padre, madre o acudiente.",
-        "Uso indebido del uniforme institucional fuera de las instalaciones educativas: manifestar actos afectivos explícitos, publicar en redes sociales fotografías propias o de compañeros, o asistir a establecimientos de expendio de licor, juegos de azar, discotecas u otros lugares que comprometan la imagen institucional, portando cualquiera de los uniformes que identifican al colegio.",
-        "Falsificación de firmas de padres, acudientes, docentes o funcionarios de la institución para la obtención de beneficios personales (justificaciones, permisos, calificaciones u otros documentos).",
+        "Conductas contrarias a los acuerdos institucionales durante actividades escolares o que afecten directamente derechos de integrantes de la comunidad: valorar el vínculo con la vida escolar y no sancionar únicamente por actividades lícitas realizadas fuera del plantel.",
+        "Alterar documentos, suplantar identidades o cometer fraude académico: valorar cada hecho de acuerdo con el Manual y el debido proceso. Estas conductas no son automáticamente una Situación Tipo III; esa clasificación procede solo si los hechos pueden constituir un presunto delito.",
         "Discriminación por razones de sexo, etnia, religión, orientación sexual, identidad de género, condición socioeconómica o cualquier otra condición que vulnere el derecho a la igualdad de un miembro de la comunidad educativa (Ley 1482 de 2011).",
         "Plagio académico: uso de fuentes, textos o contenidos de terceros sin la debida citación bibliográfica en trabajos, talleres o evaluaciones.",
         "Encubrimiento de faltas: ocultar información, tergiversar los hechos o mentir con el fin de encubrir una falta propia o de un compañero.",
         "Perturbación reiterada del normal desarrollo de las clases mediante comportamientos indebidos que interrumpen el proceso de enseñanza-aprendizaje.",
-        "Presentarse a la institución bajo evidentes efectos de alcohol u otras sustancias psicoactivas, sin evidencia de consumo, porte o distribución dentro del plantel (en cuyo caso la situación escala a Tipo III).",
+        "Presentarse a la institución bajo evidentes efectos de alcohol u otras sustancias: brindar atención y apoyo, informar a la familia y valorar los hechos. El consumo o porte por sí solo no convierte automáticamente la situación en Tipo III.",
         "Promover, convocar o participar en juegos de azar, rifas o apuestas con fines de lucro personal dentro de la institución educativa.",
-        "Portar, visualizar o circular material pornográfico o de contenido de desnudez dentro de la institución educativa. Si el material involucra a menores de la comunidad educativa, la situación escala a Tipo III por configurar pornografía infantil (Ley 679/2001).",
-        "Pertenecer o participar en pandillas o grupos juveniles cuyas dinámicas afecten la convivencia escolar y el desarrollo personal de los estudiantes. Si la participación implica el uso de armas, sustancias psicoactivas o actos de violencia, la situación escala a Tipo III.",
+        "Portar o compartir material íntimo o sexual: proteger a las personas involucradas, evitar copiar o volver a difundir el material y activar los protocolos pertinentes. Si hay indicios de un presunto delito, atenderlo mediante la Ruta Tipo III y las autoridades competentes; la clasificación jurídica depende de los hechos.",
+        "Participar en grupos o pandillas cuyas dinámicas afecten la convivencia: valorar conductas concretas y adoptar medidas de protección y apoyo. La pertenencia o participación, por sí sola, no determina una Situación Tipo III.",
       ],
       procedimiento: [
         "Brindar atención inmediata en salud física y mental de los afectados; en caso de daño al cuerpo o a la salud, remitir de manera inmediata a las entidades competentes y dejar constancia de dicha actuación.",
         "Remitir la situación a las autoridades administrativas cuando se requieran medidas de restablecimiento de derechos.",
         "Adoptar medidas de protección para los involucrados a fin de evitar posibles acciones en su contra (acompañamiento permanente, reubicación temporal o restricción de contacto).",
         "Informar de manera inmediata a los padres, madres o acudientes de los estudiantes involucrados, dejando constancia escrita de dicha actuación.",
-        "Generar espacios para exponer y precisar lo acontecido: redactar acta de reunión entre las partes para conocer los descargos y realizar la conciliación.",
+        "Generar espacios para que las personas involucradas y sus acudientes puedan exponer y precisar lo acontecido, protegiendo su intimidad. Escucharlas por separado cuando sea necesario; no imponer mediación ni conciliación.",
         "Determinar acciones restaurativas para la reparación de los daños causados, el restablecimiento de los derechos y la reconciliación.",
         "El Comité Escolar de Convivencia realizará el análisis del caso y el seguimiento de las soluciones acordadas.",
         "Activar la Ruta de Atención Integral para garantizar el acompañamiento oportuno a todas las partes involucradas.",
       ],
       medidas: [
-        { titulo: "Citación a padres de familia", descripcion: "Al completar tres faltas Tipo I se cita al padre, madre o acudiente para notificarle el comportamiento del estudiante. La citación y el acta se registran en el observador e incluyen el compromiso del estudiante de no reincidir en la falta y el seguimiento acordado con la familia." },
-        { titulo: "Remisión a Rectoría o Comité de Convivencia Escolar", descripcion: "Cuando el estudiante reincida por tres o más veces o cometa una falta Tipo II, será remitido a esta instancia donde se dejará en acta el compromiso de no reincidir en la falta y las acciones de seguimiento acordadas." },
-        { titulo: "Remisión a Comité de Convivencia Escolar o Consejo Directivo", descripcion: "Se realizará cuando se incumpla el acta de compromisos. El fin es establecer un último compromiso entre las partes involucradas antes de ser llevado el caso a Consejo Directivo." },
+        { titulo: "Comunicación y apoyo a la familia", descripcion: "Contactar a la familia cuando sea pertinente para compartir las necesidades de apoyo y acordar medidas formativas, sin imponer un número fijo de reportes como umbral disciplinario." },
+        { titulo: "Remisión a Rectoría o Comité de Convivencia Escolar", descripcion: "Remitir el caso cuando los hechos, los riesgos o los criterios del Manual lo requieran. Escuchar al estudiante y su familia, valorar cada situación y definir apoyos sin convertir la reiteración, por sí sola, en una falta de mayor tipo." },
+        { titulo: "Seguimiento de acuerdos", descripcion: "Revisar si los apoyos y acuerdos fueron efectivos y ajustarlos cuando sea necesario. No exigir compromisos que impliquen aceptar responsabilidad antes de concluir el procedimiento." },
         { titulo: "Activación de la Ruta de Atención Integral", descripcion: "Cuando la situación lo requiera, se activa la Ruta de Atención Integral para garantizar la protección, el acompañamiento psicosocial y el seguimiento oportuno a todos los involucrados." },
       ],
     },
@@ -608,21 +579,19 @@ Según el artículo 43 de la Ley 1098 de 2006, las instituciones educativas tien
       color: "#991b1b", bg: "#fee2e2", border: "#fca5a5",
       titulo: "Situaciones Tipología III",
       situaciones_academicas: [
-        "Hurtar, alterar o plagiar documentos institucionales o académicos.",
-        "Suplantar a una persona en cualquier actividad académica.",
+        "Hurtar o alterar documentos, o suplantar a una persona: solo clasificar como Tipo III si los hechos concretos pueden constituir un presunto delito; el plagio o fraude académico no lo es automáticamente.",
       ],
       situaciones_disciplinarias: [
-        "Violencia sexual, violencia digital sexual e indicios de violación: cualquier conducta de naturaleza sexual cometida sin consentimiento o sobre un menor de edad, ya sea de forma física (acceso carnal violento, acceso carnal abusivo con menor de 14 años, actos sexuales con menor de 14 años — Ley 599/2000, Arts. 208 y 209) o a través de medios digitales (compartir, producir, distribuir o usar contenido sexual para coaccionar, humillar, agredir o extorsionar — Ley 1273/2009, Art. 229C del Código Penal, Ley 2080/2021). Incluye el grooming y cualquier situación en la que existan indicios de que un niño, niña o adolescente ha sido víctima de violación, ya sea por parte de un adulto o de otro menor de edad.",
-        "Sextorsión: coaccionar, amenazar o chantajear a una persona con difundir imágenes, videos o información de carácter íntimo o sexual a cambio de dinero, favores u otras acciones. Se clasifica como extorsión agravada y delito informático (Ley 1273 de 2009).",
-        "Difusión de pornografía infantil y de imágenes íntimas constitutiva de delito: producción, distribución, tenencia o visualización de material de abuso sexual de menores de edad (Ley 679 de 2001); o compartir, publicar o distribuir sin consentimiento fotografías, videos o material audiovisual de carácter íntimo o sexual de una persona, causando perjuicio a su honra, intimidad o buen nombre (Art. 229C del Código Penal, Ley 2080 de 2021).",
-        "Delitos cibernéticos: conductas tipificadas en la Ley 1273 de 2009: acceso abusivo a sistemas informáticos, interceptación de datos, daño informático, violación de datos personales, suplantación de identidad con fines delictivos y hurto de información personal o financiera.",
+        "Presunta violencia sexual o hechos que puedan constituir delitos contra la libertad, integridad y formación sexuales: activar de inmediato las medidas de protección y las rutas correspondientes, sin interrogar reiteradamente ni revictimizar. Los artículos 208 y 209 de la Ley 599 de 2000 tipifican conductas específicas contra menores de 14 años; la valoración jurídica corresponde a las autoridades competentes.",
+        "Sextorsión: coaccionar, amenazar o chantajear a una persona con difundir imágenes, videos o información íntima o sexual. Proteger a la persona afectada, evitar la difusión y activar las rutas pertinentes; la calificación penal depende de los hechos y corresponde a las autoridades competentes.",
+        "Material de abuso sexual de menores de edad y difusión no consentida de imágenes íntimas: activar las medidas de protección y los protocolos correspondientes. La calificación jurídica de cada hecho debe ser realizada por las autoridades competentes; la institución debe evitar la revictimización y proteger la intimidad.",
+        "Presuntos delitos informáticos: atender hechos que puedan encajar en conductas tipificadas por la ley, proteger a las personas y conservar los elementos pertinentes de forma segura. La calificación corresponde a las autoridades competentes.",
         "Amenazas graves: amenazas explícitas por cualquier medio (presencial o digital) que pongan en riesgo real la vida o integridad física de un miembro de la comunidad educativa y que constituyan un delito penal.",
         "Lesiones personales graves y agresión física grave: agresiones físicas que causan daño corporal significativo, incapacidad o desfiguración tipificadas en el Código Penal, o cualquier acto que ponga en riesgo la integridad física o la vida de un miembro del personal o de la comunidad educativa.",
         "Participar en acciones de hurto, extorsión, soborno y chantaje a cualquier miembro de la comunidad educativa.",
-        "Ingerir, portar, distribuir o expender sustancias psicoactivas (SPA), cigarrillos, tabaco o vapeadores (SEAN/SSSN) dentro del contexto escolar: cualquier acto de consumo, tenencia o comercialización de dichas sustancias en las instalaciones de la institución, sus alrededores o en actividades institucionales. Activa de manera inmediata la Ruta de Atención Integral, el reporte al Sistema de Información Unificado de Convivencia Escolar y la articulación con las autoridades competentes e ICBF (Decreto 1844/2018, Ley 2354/2024, Ley 30/1986).",
-        "Uso, porte, fabricación, tráfico o almacenamiento de armas de fuego, armas blancas (cortantes, punzantes o cortopunzantes), artefactos explosivos, pólvora o cualquier elemento que pueda atentar contra la integridad física de un miembro de la comunidad educativa, dentro o fuera de la institución (Decreto 2535/1993; Arts. 365 y 365A del Código Penal; Ley 1098/2006, Art. 41).",
-        "Portar, comprar, consumir o suministrar bebidas alcohólicas dentro o fuera de la institución, incluyendo salidas pedagógicas, actividades culturales o deportivas; o presentarse a la institución portando el uniforme, en evidente estado de embriaguez (Ley 124/1994; Decreto 1108/1994; Ley 1098/2006).",
-        "Riñas, peleas colectivas, actos de vandalismo con violencia y actos vandálicos graves: planeación, organización, liderazgo, incitación o participación en riñas o peleas dentro o fuera de la institución, así como cualquier acto vandálico que ponga en riesgo la vida o la integridad de la comunidad educativa, tales como incendios provocados, uso de explosivos, pólvora o sabotaje de instalaciones.",
+        "Consumo, porte o distribución de sustancias: atender la situación con enfoque de salud, protección y prevención. Activar la Ruta Tipo III y contactar a las autoridades cuando los hechos puedan constituir un presunto delito; el consumo o porte, por sí solo, no determina automáticamente esa clasificación.",
+        "Armas, explosivos u objetos peligrosos: adoptar medidas inmediatas de seguridad y protección. La clasificación Tipo III procede cuando los hechos puedan constituir un presunto delito; no se presume responsabilidad y la calificación corresponde a las autoridades competentes.",
+        "Alcohol, riñas y daños a bienes: valorar los hechos concretos, proteger a las personas y activar los apoyos pertinentes. Solo clasificar como Tipo III si los hechos pueden constituir un presunto delito.",
       ],
       procedimiento: [
         "Brindar atención inmediata en salud física y mental de los afectados: remitir de manera urgente al servicio de salud con el que cuentan las personas involucradas.",
@@ -630,7 +599,7 @@ Según el artículo 43 de la Ley 1098 de 2006, las instituciones educativas tien
         "Informar de la situación a la Policía Nacional — Policía de Infancia y Adolescencia.",
         "Citar a los integrantes del Comité Escolar de Convivencia y ponerlos en conocimiento del caso.",
         "Adoptar las medidas propias para proteger a la víctima, a quien se le atribuye la agresión y a las personas que hayan informado o hagan parte de la situación presentada.",
-        "Se denuncia por escrito ante la autoridad competente presente en el ámbito local (Fiscalía General de la Nación, Comisaría de Familia). En caso de violencia sexual la denuncia es obligatoria.",
+        "Poner de inmediato los hechos en conocimiento de la Policía Nacional conforme al protocolo legal; activar las demás autoridades de protección o investigación que correspondan y cumplir los deberes de reporte aplicables al caso.",
         "Comunicar por escrito a los representantes legales de las personas involucradas las medidas tomadas para el manejo de la situación.",
         "La institución garantiza los derechos de las personas implicadas según los protocolos, evitando la revictimización. Se deja constancia de dicha actuación.",
         "Realizar el reporte en el Sistema de Información Unificado de Convivencia Escolar.",
@@ -639,8 +608,8 @@ Según el artículo 43 de la Ley 1098 de 2006, las instituciones educativas tien
       ],
       medidas: [
         { titulo: "Remisión a Comité de Convivencia Escolar", descripcion: "Se realizará cuando se incumpla el acta de compromisos. El fin es establecer un último compromiso entre las partes involucradas antes de ser llevado el caso a Consejo Directivo." },
-        { titulo: "Remisión a Consejo Directivo", descripcion: "Cuando haya acumulación de faltas tipo II y III. El Consejo Directivo será quien realice dicha medida pedagógica previa remisión por escrito por parte de Rectoría o Comité de Convivencia." },
-        { titulo: "Medida pedagógica restaurativa", descripcion: "La medida pedagógica será restaurativa: busca reparar los daños causados, el restablecimiento de los derechos y la reconciliación dentro de un clima de relaciones constructivas." },
+        { titulo: "Remisión a Consejo Directivo", descripcion: "Considerar la remisión cuando la gravedad y las circunstancias lo ameriten conforme al Manual vigente. La acumulación de reportes no determina automáticamente una remisión ni una sanción; debe respetarse el debido proceso y la competencia institucional." },
+        { titulo: "Medida pedagógica o restaurativa", descripcion: "Cuando sea pertinente, segura y aceptada libremente, puede proponerse una medida restaurativa. La protección y el debido proceso tienen prioridad; no se presume responsabilidad ni se impone la reconciliación." },
         { titulo: "Protocolos con otras entidades", descripcion: "La Policía Nacional deberá informar a las autoridades administrativas competentes. Se adelantan las actuaciones e imponen de inmediato las medidas de verificación, prevención o de restablecimiento de derechos de las partes involucradas." },
         { titulo: "Seguimiento por el Comité de Convivencia", descripcion: "Los casos sometidos a este protocolo serán objeto de seguimiento permanente por parte del comité de convivencia hasta que se logre el restablecimiento de los derechos de los involucrados." },
       ],
@@ -699,19 +668,63 @@ const S = MANUAL_STYLES;
 
 function loadCurrentManualData() {
   const stored = loadManualData(STORAGE_KEY, defaultData);
-  if (!stored || !Array.isArray(stored.disposiciones)) return stored;
+  if (!stored || typeof stored !== "object") return defaultData;
 
-  const storedIds = new Set(stored.disposiciones.map(item => item.id));
+  const refreshManualContent = stored.manualContentVersion !== MANUAL_CONTENT_VERSION;
+  const savedDisposiciones = Array.isArray(stored.disposiciones)
+    ? stored.disposiciones
+    : defaultData.disposiciones;
+  const refreshedDispositionIds = new Set([2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, 19, 20, 21, 22, 24, 25, 26, 27, 28, 29, 33, 34, 37, 38, 39, 42, 53, 54, 55, 56, 59, 61, 62, 68]);
+  const defaultDispositionsById = new Map(defaultData.disposiciones.map(item => [item.id, item]));
+  const storedDisposiciones = refreshManualContent
+    ? savedDisposiciones.map(item => {
+        const updated = refreshedDispositionIds.has(item.id) ? defaultDispositionsById.get(item.id) : null;
+        return updated ? { ...item, ...updated } : item;
+      })
+    : savedDisposiciones;
+  const storedIds = new Set(storedDisposiciones.map(item => item.id));
   const missingDispositions = defaultData.disposiciones.filter(item => !storedIds.has(item.id));
   const storedSituaciones = stored.rai_sistema?.situaciones;
   const situaciones = defaultData.rai_sistema.situaciones.map(defaultSituation => {
     const storedSituation = storedSituaciones?.find(situation => situation.tipo === defaultSituation.tipo);
     return storedSituation
-      ? { ...storedSituation, protocolos: defaultSituation.protocolos }
+      ? {
+          ...storedSituation,
+          ...(refreshManualContent && defaultSituation.tipo === "TIPO 3" ? { descripcion: defaultSituation.descripcion } : {}),
+          protocolos: defaultSituation.protocolos,
+        }
       : defaultSituation;
   });
+  const savedDetailedSituations = Array.isArray(stored.situaciones) ? stored.situaciones : defaultData.situaciones;
+  const refreshedSituationIds = new Set([1, 2, 3]);
+  const defaultSituationIds = new Set(defaultData.situaciones.map(item => item.id));
+  const detailedSituaciones = [
+    ...defaultData.situaciones.map(defaultSituation => {
+      const savedSituation = savedDetailedSituations.find(situation => situation.id === defaultSituation.id);
+      return savedSituation
+        ? refreshManualContent && refreshedSituationIds.has(defaultSituation.id)
+          ? { ...savedSituation, ...defaultSituation }
+          : savedSituation
+        : defaultSituation;
+    }),
+    ...savedDetailedSituations.filter(situation => !defaultSituationIds.has(situation.id)),
+  ];
+  const normas = stored.normasVersion === NORMAS_VERSION && Array.isArray(stored.normas)
+    ? stored.normas
+    : [
+        ...NORMAS_BASE,
+        ...(Array.isArray(stored.normas)
+          ? stored.normas.filter(norma => typeof norma.id === "number" && norma.id > 30)
+          : []),
+      ];
+
   return {
     ...stored,
+    manualContentVersion: MANUAL_CONTENT_VERSION,
+    normas,
+    normasVersion: NORMAS_VERSION,
+    disposiciones: [...storedDisposiciones, ...missingDispositions],
+    situaciones: detailedSituaciones,
     derechos_estudiantes: stored.derechos_estudiantes || defaultData.derechos_estudiantes,
     deberes_estudiantes: stored.deberes_estudiantes || defaultData.deberes_estudiantes,
     rai_sistema: {
@@ -719,9 +732,6 @@ function loadCurrentManualData() {
       ...stored.rai_sistema,
       situaciones,
     },
-    ...(missingDispositions.length
-      ? { disposiciones: [...stored.disposiciones, ...missingDispositions] }
-      : {}),
   };
 }
 
@@ -734,11 +744,11 @@ function Badge({ tipo }) {
   return <span style={{ fontSize: 11, fontWeight: 700, padding: "2px 8px", borderRadius: 6, background: m.bg, color: m.color, border: `1px solid ${m.border}` }}>{m.label}</span>;
 }
 
-function Modal({ title, onClose, children }) {
+function Modal({ title, onClose, children, wide = false }) {
   return (
     <div onClick={e => e.target === e.currentTarget && onClose()}
       style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.45)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 999, padding: 16 }}>
-      <div style={{ background: "#fff", borderRadius: 14, padding: 24, width: "100%", maxWidth: 560, boxShadow: "0 8px 32px rgba(0,0,0,0.18)", maxHeight: "90vh", overflowY: "auto" }}>
+      <div style={{ background: "#fff", borderRadius: 14, padding: 24, width: "100%", maxWidth: wide ? 820 : 560, boxShadow: "0 8px 32px rgba(0,0,0,0.18)", maxHeight: "90vh", overflowY: "auto" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
           <h2 style={{ fontSize: 16, fontWeight: 700, color: "#111", margin: 0 }}>{title}</h2>
           <button onClick={onClose} style={{ background: "none", border: "none", fontSize: 22, cursor: "pointer", color: "#999", lineHeight: 1, padding: "0 4px" }}>×</button>
@@ -785,6 +795,9 @@ function ManualConvivencia() {
   const [form, setForm]       = useState({});
   const [search, setSearch]   = useState("");
   const [expanded, setExpanded] = useState(null);
+  const [normaQuery, setNormaQuery] = useState("");
+  const [normaSeccion, setNormaSeccion] = useState("leyes");
+  const [pasoDebidoProceso, setPasoDebidoProceso] = useState(0);
 
   useEffect(() => saveManualData(STORAGE_KEY, data), [data]);
 
@@ -815,6 +828,32 @@ function ManualConvivencia() {
     const q = search.toLowerCase();
     return !q || d.titulo.toLowerCase().includes(q) || d.accion.toLowerCase().includes(q);
   });
+  const normasFiltradas = [...(data.normas || [])]
+    .map(norma => {
+      const year = Number(norma.year) || Number((norma.nombre || "").match(/\b(?:19|20)\d{2}\b/)?.[0]) || 0;
+      const tipo = norma.tipo || (/sentencia/i.test(norma.nombre || "")
+        ? "Sentencia"
+        : /constituci[oó]n/i.test(norma.nombre || "")
+          ? "Constitución"
+          : /decreto/i.test(norma.nombre || "")
+            ? "Decreto"
+            : /resoluci[oó]n/i.test(norma.nombre || "")
+              ? "Resolución"
+              : /acuerdo/i.test(norma.nombre || "")
+                ? "Acuerdo institucional"
+            : /ley/i.test(norma.nombre || "")
+              ? "Ley"
+              : "Otra referencia");
+      return { ...norma, year, tipo };
+    })
+    .filter(norma => {
+      const query = normaQuery.trim().toLocaleLowerCase();
+      return !query || `${norma.nombre} ${norma.descripcion}`.toLocaleLowerCase().includes(query);
+    })
+    .sort((a, b) => b.year - a.year || (a.nombre || "").localeCompare(b.nombre || "", "es"));
+  const normasLegales = normasFiltradas.filter(norma => norma.tipo !== "Sentencia");
+  const sentenciasFiltradas = normasFiltradas.filter(norma => norma.tipo === "Sentencia");
+  const referenciasVisibles = normaSeccion === "sentencias" ? sentenciasFiltradas : normasLegales;
 
   return (
     <div style={{ minHeight: "100vh", background: "#f8fafc", fontFamily: "'Inter', system-ui, sans-serif" }}>
@@ -1277,23 +1316,79 @@ function ManualConvivencia() {
         {tab === "normas" && (
           <>
             <SecHeader icon="⚖️" title="Marco normativo"
-              btn={<button style={S.btnPrimary} onClick={() => { setForm({ nombre: "", descripcion: "", url: "" }); setModal("norma"); }}>+ Agregar</button>} />
-            <div style={{ background: "#fff", border: "1px solid #e5e7eb", borderRadius: 10, overflow: "hidden" }}>
-              {data.normas.map((n, i) => (
-                <div key={n.id} style={{ padding: "14px 16px", borderBottom: i < data.normas.length - 1 ? "1px solid #f3f4f6" : "none", display: "flex", gap: 12, alignItems: "flex-start" }}>
-                  <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#1e3a5f", flexShrink: 0, marginTop: 7 }} />
-                  <div style={{ flex: 1 }}>
-                    <span style={{ fontWeight: 700, fontSize: 14, color: "#111" }}>{n.nombre}</span>
-                    <p style={{ fontSize: 13, color: "#6b7280", margin: "3px 0 0", lineHeight: 1.65 }}>{n.descripcion}</p>
-                    {n.url && <a href={n.url} target="_blank" rel="noopener noreferrer" style={{ fontSize: 11, color: "#2563eb", textDecoration: "none", display: "inline-block", marginTop: 3 }}>🔗 Ver norma</a>}
-                  </div>
-                  <div style={{ display: "flex", gap: 5, flexShrink: 0 }}>
-                    <button style={S.btnIcon} onClick={() => { setForm({ ...n }); setModal("norma"); }}>✏️</button>
-                    <button style={S.btnDanger} onClick={() => listDel("normas", n.id)}>🗑️</button>
-                  </div>
+              btn={
+                <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "flex-end" }}>
+                  <button style={{ ...S.btnPrimary, background: "#0f766e" }} onClick={() => { setPasoDebidoProceso(0); setModal("debidoProceso"); }}>🧭 Ruta del debido proceso</button>
+                  <button style={S.btnPrimary} onClick={() => { setForm({ nombre: "", descripcion: "", url: "" }); setModal("norma"); }}>+ Agregar</button>
                 </div>
-              ))}
+              } />
+            <div style={{ ...S.infoBox("#334155", "#f1f5f9", "#cbd5e1"), marginBottom: 14 }}>
+              Este listado reúne las normas y sentencias citadas en el archivo de referencia del manual. Elige una de las dos secciones y busca por número, año o tema. Las referencias señaladas para verificar no deben usarse como fundamento hasta confirmar sus datos.
             </div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "end", marginBottom: 14 }}>
+              <div style={{ flex: "2 1 220px" }}>
+                <label htmlFor="normativa-busqueda" style={{ ...S.label, marginTop: 0 }}>¿Qué necesitas consultar?</label>
+                <input id="normativa-busqueda" style={S.input} value={normaQuery} onChange={event => setNormaQuery(event.target.value)} placeholder="Ej.: convivencia, educación inclusiva, T-240..." />
+              </div>
+            </div>
+            <div role="group" aria-label="Sección de normativa" style={{ display: "flex", gap: 8, flexWrap: "wrap", borderBottom: "1px solid #cbd5e1", marginBottom: 14 }}>
+              {[
+                { id: "leyes", label: `Leyes y normas (${normasLegales.length})` },
+                { id: "sentencias", label: `Sentencias (${sentenciasFiltradas.length})` },
+              ].map(section => {
+                const active = normaSeccion === section.id;
+                return (
+                  <button key={section.id} type="button" aria-pressed={active} onClick={() => setNormaSeccion(section.id)}
+                    style={{ border: 0, borderBottom: `3px solid ${active ? "#1e3a5f" : "transparent"}`, borderRadius: "8px 8px 0 0", background: active ? "#eff6ff" : "transparent", color: active ? "#1e3a5f" : "#475569", padding: "10px 15px", fontSize: 13, fontWeight: active ? 800 : 600, cursor: "pointer" }}>
+                    {section.label}
+                  </button>
+                );
+              })}
+            </div>
+            <section aria-label={normaSeccion === "sentencias" ? "Sentencias de la Corte Constitucional" : "Leyes y otras normas"}>
+              <h3 style={{ color: "#1e3a5f", fontSize: 16, fontWeight: 800, margin: "0 0 4px" }}>
+                {normaSeccion === "sentencias" ? "Sentencias de la Corte Constitucional" : "Leyes y otras normas"}
+              </h3>
+              <p style={{ color: "#64748b", fontSize: 12, margin: "0 0 8px" }}>
+                {normaSeccion === "sentencias"
+                  ? "Cada fallo aparece por separado. Su alcance depende de los hechos y las razones de esa decisión."
+                  : "Incluye leyes, decretos, resoluciones y referencias institucionales mencionadas en el archivo del manual."}
+              </p>
+              <p aria-live="polite" style={{ fontSize: 12, color: "#64748b", margin: "0 0 8px" }}>{referenciasVisibles.length} referencias encontradas</p>
+              {referenciasVisibles.length > 0 ? (
+                <ol style={{ margin: 0, padding: 0, listStyle: "none", borderTop: "1px solid #dbe3ec" }}>
+                  {referenciasVisibles.map(norma => (
+                      <li key={norma.id} style={{ display: "grid", gridTemplateColumns: "58px minmax(0,1fr)", gap: "8px 14px", padding: "13px 4px", borderBottom: "1px solid #dbe3ec" }}>
+                        <span style={{ color: "#0f766e", fontSize: 13, fontWeight: 800, paddingTop: 2 }}>{norma.year || "s/f"}</span>
+                        <div style={{ minWidth: 0 }}>
+                          <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 8, flexWrap: "wrap" }}>
+                            <strong style={{ color: "#1f2937", fontSize: 14, lineHeight: 1.5 }}>{norma.nombre}</strong>
+                            <span style={{ color: "#64748b", fontSize: 11, fontWeight: 600 }}>{norma.tipo}</span>
+                          </div>
+                          <p style={{ color: "#475569", fontSize: 13, lineHeight: 1.6, margin: "3px 0 5px" }}>{norma.descripcion}</p>
+                          <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
+                            {norma.url
+                              ? <a href={norma.url} target="_blank" rel="noopener noreferrer" style={{ color: "#1d4ed8", fontSize: 12, fontWeight: 700, textDecoration: "underline" }}>
+                                  {norma.tipo === "Sentencia"
+                                    ? "Leer sentencia en la Corte Constitucional"
+                                    : norma.url === "https://www.funcionpublica.gov.co/eva/gestornormativo/"
+                                      ? "Buscar en el Gestor Normativo"
+                                      : norma.id === "resolucion-fgn-383-2022"
+                                        ? "Buscar en el sitio de la Fiscalía"
+                                        : "Consultar texto oficial"}
+                                </a>
+                              : <span style={{ color: "#92400e", fontSize: 12 }}>Referencia institucional; confirmar el documento con el Consejo Directivo.</span>}
+                            <button type="button" style={{ ...S.btnIcon, padding: "2px 7px", fontSize: 11 }} onClick={() => { setForm({ ...norma }); setModal("norma"); }}>Editar</button>
+                            <button type="button" style={{ ...S.btnDanger, padding: "2px 7px", fontSize: 11 }} onClick={() => listDel("normas", norma.id)}>Eliminar</button>
+                          </div>
+                        </div>
+                      </li>
+                  ))}
+                </ol>
+              ) : (
+                <p style={{ color: "#64748b", fontSize: 13, padding: "16px 0" }}>No encontramos referencias en esta sección con esa búsqueda. Prueba otro término.</p>
+              )}
+            </section>
           </>
         )}
 
@@ -1379,18 +1474,18 @@ function ManualConvivencia() {
             </div>
             <p style={{ fontSize: 12, color: "#9ca3af", marginBottom: 14 }}>{filteredDisp.length} de {data.disposiciones.length} disposiciones</p>
 
-            {["1", "2", "3"].map(tipo => {
+            {["1", "2", "3", "contextual"].map(tipo => {
               const items = filteredDisp.filter(d => d.tipo === tipo);
               if (!items.length) return null;
               const m = TIPO_META[tipo];
-              const tipoLabel = tipo === "1" ? "Faltas leves" : tipo === "2" ? "Faltas moderadas" : "Faltas graves";
+              const tipoLabel = tipo === "contextual" ? "Orientación general" : `Situaciones ${m.label}`;
               return (
                 <div key={tipo} style={{ marginBottom: 26 }}>
                   {/* Encabezado del grupo */}
                   <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12, padding: "8px 14px", background: m.bg, borderRadius: 8, border: `1px solid ${m.border}` }}>
                     <Badge tipo={tipo} />
                     <span style={{ fontSize: 13, fontWeight: 700, color: m.color }}>{tipoLabel}</span>
-                    <span style={{ fontSize: 12, color: m.color, opacity: 0.7 }}>({items.length} faltas)</span>
+                    <span style={{ fontSize: 12, color: m.color, opacity: 0.7 }}>({items.length} elementos)</span>
                     {tipo !== "1" && (
                       <span style={{ marginLeft: "auto", fontSize: 11, color: m.color, opacity: 0.75, fontStyle: "italic" }}>
                         Ver definiciones completas en → Ruta RAI
@@ -1543,6 +1638,63 @@ function ManualConvivencia() {
         </Modal>
       )}
 
+      {modal === "debidoProceso" && (
+        <Modal title="Ruta excepcional del debido proceso" onClose={close} wide>
+          <div style={{ background: "#eff6ff", border: "1px solid #bfdbfe", borderRadius: 12, padding: "13px 15px", marginBottom: 18 }}>
+            <p style={{ fontSize: 13, fontWeight: 800, color: "#1e3a8a", margin: "0 0 5px" }}>Primero proteger; siempre garantizar el derecho a la educación.</p>
+            <p style={{ fontSize: 12, lineHeight: 1.65, color: "#334155", margin: 0 }}>La Ruta de Atención Integral atiende y protege; el proceso disciplinario establece responsabilidades escolares. Son actuaciones relacionadas, pero distintas. Un reporte o una situación Tipo III no equivale por sí sola a culpabilidad ni determina una sanción.</p>
+          </div>
+
+          <div aria-label="Pasos del debido proceso" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(78px,1fr))", gap: 7, marginBottom: 18 }}>
+            {RUTA_DEBIDO_PROCESO.map((paso, index) => {
+              const active = index === pasoDebidoProceso;
+              const completed = index < pasoDebidoProceso;
+              return (
+                <button key={paso.titulo} type="button" onClick={() => setPasoDebidoProceso(index)} aria-current={active ? "step" : undefined}
+                  style={{ border: `1px solid ${active ? "#0f766e" : "#e2e8f0"}`, borderRadius: 10, padding: "9px 5px", background: active ? "#ecfdf5" : "#fff", color: active ? "#0f766e" : "#64748b", cursor: "pointer", textAlign: "center" }}>
+                  <span style={{ display: "flex", width: 25, height: 25, borderRadius: "50%", alignItems: "center", justifyContent: "center", margin: "0 auto 5px", background: completed ? "#0f766e" : active ? "#0f766e" : "#e2e8f0", color: active || completed ? "#fff" : "#475569", fontWeight: 800, fontSize: 12 }}>{completed ? "✓" : index + 1}</span>
+                  <span style={{ display: "block", fontSize: 10, lineHeight: 1.3, fontWeight: active ? 800 : 600 }}>{paso.titulo}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {(() => {
+            const paso = RUTA_DEBIDO_PROCESO[pasoDebidoProceso];
+            return (
+              <section aria-live="polite" style={{ border: "1px solid #e2e8f0", borderRadius: 14, padding: "20px 22px", background: "#fff" }}>
+                <p style={{ color: "#0f766e", fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: ".08em", margin: "0 0 6px" }}>Paso {pasoDebidoProceso + 1} de {RUTA_DEBIDO_PROCESO.length}</p>
+                <h3 style={{ color: "#102a43", fontSize: 21, lineHeight: 1.35, margin: "0 0 6px" }}>{paso.titulo}</h3>
+                <p style={{ color: "#475569", fontSize: 13, lineHeight: 1.6, margin: "0 0 15px" }}>{paso.objetivo}</p>
+                <div style={{ display: "grid", gap: 9 }}>
+                  {paso.acciones.map((accion, index) => (
+                    <div key={index} style={{ display: "flex", gap: 10, alignItems: "flex-start", background: "#f8fafc", borderRadius: 9, padding: "10px 12px" }}>
+                      <span style={{ display: "flex", width: 22, height: 22, flexShrink: 0, alignItems: "center", justifyContent: "center", borderRadius: "50%", background: "#d1fae5", color: "#047857", fontWeight: 800, fontSize: 11 }}>{index + 1}</span>
+                      <span style={{ color: "#334155", fontSize: 13, lineHeight: 1.6 }}>{accion}</span>
+                    </div>
+                  ))}
+                </div>
+                <div style={{ borderLeft: "4px solid #f59e0b", background: "#fffbeb", borderRadius: "0 9px 9px 0", padding: "11px 13px", marginTop: 14 }}>
+                  <p style={{ fontSize: 11, color: "#92400e", fontWeight: 800, textTransform: "uppercase", margin: "0 0 3px" }}>Garantía esencial</p>
+                  <p style={{ fontSize: 12, color: "#78350f", lineHeight: 1.6, margin: 0 }}>{paso.garantia}</p>
+                </div>
+              </section>
+            );
+          })()}
+
+          <p style={{ fontSize: 11, color: "#64748b", lineHeight: 1.6, margin: "13px 0 0" }}>
+            Guía orientativa basada en la Ley 1620 de 2013, el Decreto 1965 de 2013 y las sentencias T-240 de 2018 y T-1233 de 2003. En cada caso se debe aplicar el Manual de Convivencia vigente, verificar su compatibilidad con la normativa actual y consultar a la autoridad educativa competente cuando corresponda.
+          </p>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8, marginTop: 18 }}>
+            <button type="button" style={S.btnSec} onClick={() => setPasoDebidoProceso(index => Math.max(0, index - 1))} disabled={pasoDebidoProceso === 0}>← Anterior</button>
+            <span style={{ fontSize: 12, color: "#64748b" }}>{pasoDebidoProceso + 1} / {RUTA_DEBIDO_PROCESO.length}</span>
+            {pasoDebidoProceso < RUTA_DEBIDO_PROCESO.length - 1
+              ? <button type="button" style={{ ...S.btnPrimary, background: "#0f766e" }} onClick={() => setPasoDebidoProceso(index => Math.min(RUTA_DEBIDO_PROCESO.length - 1, index + 1))}>Siguiente paso →</button>
+              : <button type="button" style={S.btnPrimary} onClick={close}>Finalizar</button>}
+          </div>
+        </Modal>
+      )}
+
       {/* Desventaja académica */}
       {modal === "desv_ac" && (
         <Modal title={form.id ? "Editar desventaja académica" : "Nueva desventaja académica"} onClose={close}>
@@ -1574,11 +1726,12 @@ function ManualConvivencia() {
       {/* Disposición */}
       {modal === "disp" && (
         <Modal title={form.id ? "Editar disposición" : "Nueva disposición"} onClose={close}>
-          <label style={S.label}>Tipo de falta</label>
+          <label style={S.label}>Clasificación</label>
           <select style={S.input} value={form.tipo || "1"} onChange={f("tipo")}>
-            <option value="1">Tipo I — Falta leve</option>
-            <option value="2">Tipo II — Falta moderada</option>
-            <option value="3">Tipo III — Falta grave</option>
+            <option value="1">Situación Tipo I</option>
+            <option value="2">Situación Tipo II</option>
+            <option value="3">Situación Tipo III — presunto delito</option>
+            <option value="contextual">Orientación — clasificación según los hechos</option>
           </select>
           <label style={S.label}>Situación / Falta</label>
           <input style={S.input} value={form.titulo || ""} onChange={f("titulo")} placeholder="Ej: Uso de mal vocabulario" />
