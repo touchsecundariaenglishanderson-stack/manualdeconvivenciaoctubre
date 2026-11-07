@@ -1,4 +1,4 @@
-export const NORMAS_VERSION = 5;
+export const NORMAS_VERSION = 6;
 
 const GESTOR_NORMATIVO = "https://www.funcionpublica.gov.co/eva/gestornormativo/";
 const FISCALIA = "https://www.fiscalia.gov.co/colombia/";
@@ -137,7 +137,7 @@ export const NORMAS_BASE = [
     year: 2019,
     tipo: "Sentencia",
     nombre: "Sentencia SU-420 de 2019 — Honra y buen nombre en redes sociales",
-    descripcion: "Unifica reglas sobre la protección de la intimidad, la honra y el buen nombre frente a publicaciones en redes sociales; el análisis depende de las circunstancias de cada caso.",
+    descripcion: "Unifica criterios para valorar publicaciones en redes y el equilibrio entre libertad de expresión, intimidad, honra y buen nombre. Considera el contenido, el canal, el alcance e impacto (seguidores, vistas o reacciones) y la periodicidad o reiteración; el alcance no determina por sí solo la tipología escolar ni una sanción.",
     url: "https://www.corteconstitucional.gov.co/relatoria/2019/su420-19.htm",
   },
   {
@@ -169,7 +169,7 @@ export const NORMAS_BASE = [
     year: 2013,
     tipo: "Ley",
     nombre: "Ley 1620 de 2013 — Sistema de Convivencia Escolar",
-    descripcion: "Crea el Sistema Nacional de Convivencia Escolar y la Ruta de Atención Integral. Su texto oficial registra adiciones posteriores.",
+    descripcion: "Crea el Sistema Nacional de Convivencia Escolar y la Ruta de Atención Integral. Define el ciberacoso como intimidación deliberada y continuada mediante tecnologías; el Decreto 1965 de 2013 desarrolla las tipologías. Su texto oficial registra adiciones posteriores.",
     url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=52287",
   },
   {
@@ -185,7 +185,7 @@ export const NORMAS_BASE = [
     year: 2012,
     tipo: "Ley",
     nombre: "Ley 1581 de 2012 — Protección de datos personales",
-    descripcion: "Establece disposiciones generales para proteger los datos personales, incluida la información de niñas, niños y adolescentes.",
+    descripcion: "Regula el tratamiento de datos personales, incluidos los principios de autorización y finalidad, y reconoce los datos sobre vida sexual como sensibles. Su aplicación depende del contexto y de las excepciones legales; una fotografía no constituye por sí sola un delito.",
     url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=49981",
   },
   {
@@ -352,8 +352,8 @@ export const NORMAS_BASE = [
     id: "sentencia-t240-2018",
     year: 2018,
     tipo: "Sentencia",
-    nombre: "Sentencia T-240 de 2018 — Debido proceso escolar",
-    descripcion: "Reitera que los manuales deben respetar las garantías del debido proceso. La decisión de un caso concreto no establece una sanción automática para otros estudiantes.",
+    nombre: "Sentencia T-240 de 2018 — Difusión de fotografías íntimas en redes",
+    descripcion: "Revisó un caso de difusión de fotografías íntimas de estudiantes por redes sociales y la sanción escolar impuesta. La Corte encontró respetado el debido proceso en ese caso concreto; no establece expulsión automática ni decidió sobre imágenes generadas con IA.",
     url: "https://www.corteconstitucional.gov.co/relatoria/2018/t-240-18.htm",
   },
   {

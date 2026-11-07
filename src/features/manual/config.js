@@ -1,5 +1,5 @@
 export const STORAGE_KEY = "la_amistad_v26";
-export const MANUAL_CONTENT_VERSION = 4;
+export const MANUAL_CONTENT_VERSION = 5;
 
 export const TIPO_META = {
   "1": { label: "Tipo I", color: "#166534", bg: "#dcfce7", border: "#86efac" },
